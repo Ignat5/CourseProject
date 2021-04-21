@@ -24,17 +24,44 @@ class User {
 
         $query = "INSERT INTO users (user_name,user_password) VALUES('$this->username',SHA('$this->password'))";
         $result = $connection->query($query);
+
+        $query_getID = "SELECT user_id FROM users WHERE user_name='$this->username'";
+        $result_id = $connection->query($query_getID);
+        if(!($result) ||!($result_id)) {
+            throw new UserException("Ошибка при регистрации",UserException::$CODE_INSERT);
+        }
         $connection->close();
-        return $result;
+        return $result_id;
     }
 
     public function authorizeUser() {
         $this->isAuthOk();
-        return true;
+        //get user's id
+        $connection = Connection::getConnection();
+        $query_getID = "SELECT user_id FROM users WHERE user_name='$this->username'";
+        $result_id = $connection->query($query_getID);
+        if(!($result_id)) {
+            throw new UserException("Ошибка при регистрации",UserException::$CODE_INSERT);
+        }
+        $connection->close();
+        return $result_id;
+
+    }
+
+    public static function getUserById ($user_id) {
+        $connection = Connection::getConnection();
+        $query = "SELECT user_id,user_name,isAdmin FROM users WHERE user_id=$user_id";
+        $result = $connection->query($query);
+        if (!$result) {
+            throw new UserException("Ошибка при получении id",UserException::$CODE_SELECT_ID);
+        }
+        $row = $result->fetch_assoc();
+        $connection->close();
+        return $row;
     }
 
 
-    //check
+    //check addUser
     private function isUnique($name) {
         $connection = Connection::getConnection();
         $query="SELECT * FROM users WHERE user_name = '$this->username'";
@@ -49,7 +76,7 @@ class User {
             throw new UserException("Заполните все поля!",UserException::$CODE_EMPTY);
         }
     }
-
+    //check authorizeUser
     private function isAuthOk () {
         $connection = Connection::getConnection();
         if(trim($this->username)=="" || trim($this->password)=="") {

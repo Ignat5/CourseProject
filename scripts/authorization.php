@@ -26,9 +26,18 @@ if (isset($_REQUEST['submit'])) {
     $user_password = $_REQUEST['password'];
     $authUser = new User($user_name,$user_password);
     try {
-        if($authUser->authorizeUser()){
+        if($user_result = $authUser->authorizeUser()){
             echo 'Добро пожаловать '.$authUser->getName();
-            //$main_url = 'http://'.$_SERVER['HTTP_HOST'].'/CourseProject/main'.'/main.php';
+            //сохранить данные в cookies и sessions
+            try {
+                $user_row = $user_result->fetch_assoc();
+                $user_id = $user_row['user_id'];
+                $time_to_expiring = 0; //сразу по закрытии страницы
+                setcookie("user_id","$user_id",$time_to_expiring);
+            }catch (UserException $exception) {
+                $errors[] = $exception->getMessage();
+                die();
+            }
             $main_url = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/main.php';
             header('Location:'.$main_url);
         }
@@ -51,8 +60,8 @@ if (isset($_REQUEST['submit'])) {
         <br>
         <br>
         <button type="submit" name="submit">Авторизироваться</button>
-
     </form>
+    <a href= <?php echo '/scripts/registration.php';?>>Зарегистрироваться</a>
     <?php
 }else {
 ?>
@@ -71,7 +80,8 @@ if (isset($_REQUEST['submit'])) {
     <br>
     <br>
     <button type="submit" name="submit">Авторизироваться</button>
-
+</form>
+<a href= <?php echo 'registration.php';?>>Зарегистрироваться</a>
 </body>
 <?php
 }

@@ -14,13 +14,48 @@
     .div_menu {
         float: left;
         width: 20%;
+
         background-color: antiquewhite;
+        margin-left: -10px;
     }
 </style>
 
 <body>
 
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/User.php');
+if(isset($_COOKIE['user_id'])) {
+//get user by his id and set sessions
+    var_dump($_COOKIE['user_id']);
+    try {
+        $user_row = User::getUserById(intval($_COOKIE['user_id'])); //ассоц массив с данными пользователя
+        //save user's data in session
+        session_start();
+        $_SESSION['user_id'] = $user_row['user_id'];
+        $_SESSION['user_name'] = $user_row['user_name'];
+        $_SESSION['isAdmin'] = $user_row['isAdmin'];
+        echo 'Вы авторизированы, '.$_SESSION['user_name'].'<hr>';
+    }catch (UserException $exception) {
+        die($exception->getMessage());
+    }
+}else {
+//user in not authorised
+    echo 'You are not authorized!';
+}
+
+if(isset($_SESSION['isAdmin'])) {
+    if($_SESSION['isAdmin'] == 0) {
+        require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/scripts/fragments/appbars/appbar_auth_user.php');
+    }else {
+        require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/scripts/fragments/appbars/appbar_admin.php');
+    }
+
+}else {
+    require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/scripts/fragments/appbars/appbar_not_auth_user.php');
+}
+
+
+//require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/scripts/fragments/appbars/appbar_not_auth_user.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
 $allArticles = Article::getArticles();
 echo '<div class="div_menu">';

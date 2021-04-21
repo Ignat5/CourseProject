@@ -26,7 +26,11 @@ if(isset($_REQUEST['submit'])) {
     $user_password = $_REQUEST['password'];
     $newUser = new User($user_name,$user_password);
     try {
-        $newUser->addUser();
+        $row_user = $newUser->addUser();
+        $user_arr = $row_user->fetch_array();
+        $user_id = $user_arr['user_id'];
+        $time_to_expiring = 0; //сразу по закрытии страницы
+        setcookie("user_id","$user_id",$time_to_expiring);
         $main_url = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/main.php';
         header('Location:'.$main_url);
     }catch (UserException $exception) {
