@@ -1,7 +1,9 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
 $chosenArticle = array();
+$art_id = 2;
 if(isset($_GET['art_id'])) {
+    $art_id = $_GET['art_id'];
     if (!$chosenArticle = Article::getArticleById($_GET['art_id'])) {
         die('Запрос не был отправлен');
     }
@@ -69,17 +71,17 @@ if($role == 1) {
 }
 if($role == 2) {
     //admin
+    $path_update = '/CourseProject/scripts/articles/admin/update_article.php'.
+    '?art_id='.$art_id;
+    $path_delete = '/CourseProject/scripts/articles/admin/delete_article.php'.
+        '?art_id='.$art_id;
+
     echo '<div class = "change">';
-        echo '<a href="#modif">Редактировать статью</a>'.'<hr>';
-        echo '<a href="#delete">Удалить статью</a>'.'<hr>';
+        echo '<a href='.$path_update.'>Редактировать статью</a>'.'<hr>';
+        echo '<a href='.$path_delete.'>Удалить статью</a>'.'<hr>';
     echo '</div>';
 }
 ?>
-
-<!-- <div class="change">
-    <a href="#change">Редактировать статью</a> <br><br>
-    <a href="#delete">Удалить статью</a>
-</div> -->
 
 </body>
 

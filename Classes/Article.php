@@ -43,6 +43,26 @@ class Article {
         }else {echo 'Data was NOT inserted!';}
         $connection->close();
     }
+    public static function update_article($art_theme,$art_name,$art_context,$art_id) {
+        $connection = Connection::getConnection();
+        $query = "UPDATE articles SET art_name = '$art_name',art_theme = '$art_theme',art_context = '$art_context',art_date = CURRENT_DATE() WHERE art_id = $art_id";
+        if($connection->query($query)) {}
+        else {
+            $connection->close();
+            die('Не удалось обновить статью');
+        }
+        $connection->close();
+
+    }
+    public static function delete_article ($art_id) {
+        $connection = Connection::getConnection();
+        $query = "DELETE FROM articles WHERE art_id = $art_id";
+        $result = $connection->query($query);
+        if(!$result) {
+            die('Не удалось удалить статью');
+        }
+        $connection->close();
+    }
     public static function getArticles() {
         $connection = Connection::getConnection();
         $query = "SELECT art_name,art_date,art_isApproved,art_id FROM articles";
