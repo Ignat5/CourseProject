@@ -43,7 +43,7 @@
     <ul>
         <li><a class="active" href="#home">Главная</a></li>
         <li><a href="#news">Предложить статью</a></li>
-        <li><a href="#contact">Посмотреть мои запросы</a></li>
-        <li><a href="#contact">Выйти из аккаунта</a></li>
+        <li><a href="/CourseProject/scripts/main.php">Посмотреть мои запросы</a></li>
+        <li style="float: right"><a href="/CourseProject/scripts/logout.php">Выйти из аккаунта</a></li>
     </ul>
 </div>

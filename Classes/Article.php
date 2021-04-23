@@ -6,7 +6,6 @@ class Article {
     private string $context;
     private bool $isApproved;
     private int $authorID;
-    public static int $ROLE = 1;
 
     function __construct($name,$theme,$context,$isApproved,$authorID) {
         $this->name = $name;
@@ -41,7 +40,6 @@ class Article {
         $query = "INSERT INTO articles (art_name,art_theme,art_context,art_isApproved,art_authorID,art_date)"
             ." VALUES('$this->name','$this->theme','$this->context',$this->isApproved,$this->authorID,CURRENT_DATE())";
         if($connection->query($query)) {
-            echo 'Data was inserted!';
         }else {echo 'Data was NOT inserted!';}
         $connection->close();
     }
@@ -69,6 +67,11 @@ class Article {
         }
         $connection->close();
         return $result;
+    }
+    public static function isArticleValid($article_theme,$article_name,$article_context) {
+        if(trim($article_theme) == '' ||trim($article_name) == '' ||trim($article_context) == ''){
+            throw new Exception('Заполните все поля!');
+        }
     }
 }
 ?>

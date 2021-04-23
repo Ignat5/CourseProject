@@ -46,7 +46,7 @@
 
 <div class="appbar">
     <ul>
-        <li><a class="home" href="#home">Главная</a></li>
+        <li><a class="home" href="/CourseProject/scripts/main.php">Главная</a></li>
         <li style="float: right"><a href="/CourseProject/scripts/authorization.php">Авторизироваться</a></li>
     </ul>
 </div>

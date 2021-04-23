@@ -13,6 +13,14 @@ if(isset($_GET['art_id'])) {
     $article_context = $chosenArticle['art_context'];
     $article_author = $chosenArticle['user_name'];
     $article_date = $chosenArticle['art_date'];
+    /// role: 0-not_auth, 1-auth, 2-admin
+    $role = 0;
+    if(!isset($_SESSION['user_name'])) {
+        $role = 0;
+    }else if($_SESSION['isAdmin'] == 0) {
+        $role = 1;
+    }else {$role = 2;}
+
 
 ?>
 <!DOCTYPE html>
@@ -27,6 +35,7 @@ if(isset($_GET['art_id'])) {
             background-color: darkgray;
             float: left;
             width: 70%;
+            <?php if($role==0) {echo 'width: 80%';} ?>
         }
         .change {
             float: left;
@@ -50,11 +59,27 @@ if(isset($_GET['art_id'])) {
     <hr>
     <h4><?php echo 'Автор статьи: '.$article_author?></h4>
 </div>
+<?php
+//require_once();
+if($role == 1) {
+    //auth_user
+    echo '<div class = "change">';
+        echo '<a href="#modif">Предложить модификацию статьи</a>'.'<hr>';
+    echo '</div>';
+}
+if($role == 2) {
+    //admin
+    echo '<div class = "change">';
+        echo '<a href="#modif">Редактировать статью</a>'.'<hr>';
+        echo '<a href="#delete">Удалить статью</a>'.'<hr>';
+    echo '</div>';
+}
+?>
 
-<div class="change">
+<!-- <div class="change">
     <a href="#change">Редактировать статью</a> <br><br>
     <a href="#delete">Удалить статью</a>
-</div>
+</div> -->
 
 </body>
 

@@ -20,6 +20,7 @@
 <body>
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/User.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/scripts/fragments/appbars/appbar_not_auth_user.php');
 $errors = [];
 if(isset($_REQUEST['submit'])) {
     $user_name = $_REQUEST['name'];

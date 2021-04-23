@@ -16,7 +16,6 @@
         width: 20%;
 
         background-color: antiquewhite;
-        margin-left: -10px;
     }
 </style>
 
@@ -26,7 +25,6 @@
 require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/User.php');
 if(isset($_COOKIE['user_id'])) {
 //get user by his id and set sessions
-    var_dump($_COOKIE['user_id']);
     try {
         $user_row = User::getUserById(intval($_COOKIE['user_id'])); //ассоц массив с данными пользователя
         //save user's data in session
