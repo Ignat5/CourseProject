@@ -41,9 +41,9 @@
 
 <div class="appbar">
     <ul>
-        <li><a class="active" href="#home">Главная</a></li>
-        <li><a href="#news">Предложить статью</a></li>
-        <li><a href="/CourseProject/scripts/main.php">Посмотреть мои запросы</a></li>
+        <li><a class="active" href="/CourseProject/scripts/main.php">Главная</a></li>
+        <li><a href="/CourseProject/scripts/articles/user/offer_article.php">Предложить статью</a></li>
+        <li><a href="/CourseProject/scripts/articles/user/watch_requests.php">Посмотреть мои запросы</a></li>
         <li style="float: right"><a href="/CourseProject/scripts/logout.php">Выйти из аккаунта</a></li>
     </ul>
 </div>

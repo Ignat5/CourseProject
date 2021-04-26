@@ -1,4 +1,4 @@
-<?php require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/scripts/fragments/appbars/appbar_admin.php');?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/scripts/fragments/appbars/appbar_auth_user.php');?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,18 +24,19 @@
     </style>
 </head>
 <body>
+<?php global $form_theme,$form_name,$form_context;?>
 <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" class="form">
 
 
     <div class="article_name">
-        <input  class="cl1" type="text" name="article_theme" placeholder="Тема"><br><br>
-        <input  class="cl1" type="text" name="article_name" placeholder="Название статьи">
+        <input  class="cl1" type="text" value= "<?php echo $form_theme;?>" name="article_theme" placeholder="Тема"><br><br>
+        <input  class="cl1" type="text" value="<?php echo $form_name;?>" name="article_name" placeholder="Название статьи">
     </div>
 
-    <textarea id="textarea1" name="article_context" cols="100" rows="20">Some text here</textarea>
+    <textarea id="textarea1" name="article_context" cols="100" rows="20"><?php echo $form_context;?></textarea>
 
     <div class="button">
-        <button id="createID" class="button" type="submit" name="create" >Создать статью</button>
+        <button class="button" type="submit" name="create" >Предложить статью</button>
     </div>
 
 </form>

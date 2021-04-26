@@ -30,7 +30,7 @@
 
     <div class="article_name">
         <input  class="cl1" type="text" value= "<?php echo $form_theme;?>" name="article_theme" placeholder="Тема"><br><br>
-        <input  class="cl1" type="text" value=""<?php echo $form_name;?>"" name="article_name" placeholder="Название статьи">
+        <input  class="cl1" type="text" value="<?php echo $form_name;?>" name="article_name" placeholder="Название статьи">
     </div>
 
     <textarea id="textarea1" name="article_context" cols="100" rows="20"><?php echo $form_context;?></textarea>

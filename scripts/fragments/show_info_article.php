@@ -37,7 +37,7 @@ if(isset($_GET['art_id'])) {
             background-color: darkgray;
             float: left;
             width: 70%;
-            <?php if($role==0) {echo 'width: 80%';} ?>
+            <?php if($role!=2) {echo 'width: 80%';} ?>
         }
         .change {
             float: left;
@@ -63,12 +63,12 @@ if(isset($_GET['art_id'])) {
 </div>
 <?php
 //require_once();
-if($role == 1) {
+/*if($role == 1) {
     //auth_user
     echo '<div class = "change">';
         echo '<a href="#modif">Предложить модификацию статьи</a>'.'<hr>';
     echo '</div>';
-}
+}*/
 if($role == 2) {
     //admin
     $path_update = '/CourseProject/scripts/articles/admin/update_article.php'.

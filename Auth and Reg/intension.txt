@@ -1,1 +1,0 @@
-How am i going to auth and reg a user

@@ -1,4 +1,4 @@
-<?php require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/scripts/fragments/appbars/appbar_admin.php');?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/scripts/fragments/appbars/appbar_auth_user.php');?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +35,7 @@
     <textarea id="textarea1" name="article_context" cols="100" rows="20">Some text here</textarea>
 
     <div class="button">
-        <button id="createID" class="button" type="submit" name="create" >Создать статью</button>
+        <button class="button" type="submit" name="create" >Предложить статью</button>
     </div>
 
 </form>

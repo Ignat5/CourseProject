@@ -4,7 +4,7 @@ class Article {
     private string $name;
     private string $theme;
     private string $context;
-    private bool $isApproved;
+    private int $isApproved;
     private int $authorID;
 
     function __construct($name,$theme,$context,$isApproved,$authorID) {
@@ -75,6 +75,17 @@ class Article {
         return $result;
 
     }
+    public static function getArticlesOfUser($userID) {
+        $connection = Connection::getConnection();
+        $query = "SELECT art_name,art_date,art_isApproved,art_id FROM articles WHERE art_authorID = $userID AND art_isApproved = 0";
+        if($result = $connection->query($query)) {
+            $result->fetch_all();
+        }else {
+            echo 'getArticlesOfUser problem';
+        }
+        $connection->close();
+        return $result;
+    }
     public static function getArticleById($article_id) {
         $connection = Connection::getConnection();
         $query = "SELECT art_name,art_theme,art_context,art_date,users.user_name FROM articles ".
@@ -87,6 +98,18 @@ class Article {
         }
         $connection->close();
         return $result;
+    }
+    public static function getDefaultArticleOfUser($userID) {
+        $connection = Connection::getConnection();
+        $query = "SELECT art_id FROM articles WHERE art_authorID = $userID AND art_isApproved = 0 LIMIT 1";
+        if($result = $connection->query($query)) {
+            $result = $result->fetch_assoc();
+            $connection->close();
+            return $result;
+        }else {
+            echo 'getDefaultArticleOfUser problem';
+        }
+        $connection->close();
     }
     public static function isArticleValid($article_theme,$article_name,$article_context) {
         if(trim($article_theme) == '' ||trim($article_name) == '' ||trim($article_context) == ''){
