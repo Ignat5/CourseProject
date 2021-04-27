@@ -1,20 +1,25 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
 $chosenArticle = array();
-$art_id = 2;
+//$art_id = 2;
 if(isset($_GET['art_id'])) {
     $art_id = $_GET['art_id'];
     if (!$chosenArticle = Article::getArticleById($_GET['art_id'])) {
         die('Запрос не был отправлен');
     }
 }else {
-    $chosenArticle = Article::getArticleById(2);
+    //$chosenArticle = Article::getArticleById(2);
+    if($chosenArticle = Article::getDefaultArticle()) {
+    }else {die('Не удалось получить дефолтную статью');}
 }
     $article_name = $chosenArticle['art_name'];
     $article_theme = $chosenArticle['art_theme'];
     $article_context = $chosenArticle['art_context'];
     $article_author = $chosenArticle['user_name'];
     $article_date = $chosenArticle['art_date'];
+    if (isset($chosenArticle['art_id'])) {
+        $art_id = $chosenArticle['art_id'];
+    }
     /// role: 0-not_auth, 1-auth, 2-admin
     $role = 0;
     if(!isset($_SESSION['user_name'])) {

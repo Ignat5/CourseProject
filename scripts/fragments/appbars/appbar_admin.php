@@ -43,7 +43,7 @@
 <ul>
     <li><a class="active" href="/CourseProject/scripts/main.php">Главная</a></li>
     <li><a href="/CourseProject/scripts/articles/admin/create_article.php">Создать статью</a></li>
-    <li><a href="#contact">Посмотреть запросы пользователей</a></li>
+    <li><a href="/CourseProject/scripts/articles/admin/check_requests.php">Посмотреть запросы пользователей</a></li>
     <li style="float: right"><a href="/CourseProject/scripts/logout.php">Выйти из аккаунта</a></li>
 </ul>
 </div>

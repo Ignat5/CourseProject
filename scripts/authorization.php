@@ -62,7 +62,7 @@ if (isset($_REQUEST['submit'])) {
         <br>
         <button type="submit" name="submit">Авторизироваться</button>
     </form>
-    <a href= <?php echo '/scripts/registration.php';?>>Зарегистрироваться</a>
+    <a href= <?php echo '/CourseProject/scripts/registration.php';?>>Зарегистрироваться</a>
     <?php
 }else {
 ?>

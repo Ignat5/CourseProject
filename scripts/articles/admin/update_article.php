@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
+if(!isset($_REQUEST['update'])) {
 $chosenArticle = array();
 $art_id = 2;
 if(isset($_GET['art_id'])) {
@@ -9,6 +10,7 @@ if (!$chosenArticle = Article::getArticleById($_GET['art_id'])) {
 die('Запрос не был отправлен');
 }
 }else {
+    die("WTF!?");
 $chosenArticle = Article::getArticleById(2);
 }
 $article_name = $chosenArticle['art_name'];
@@ -16,6 +18,7 @@ $article_theme = $chosenArticle['art_theme'];
 $article_context = $chosenArticle['art_context'];
 $article_author = $chosenArticle['user_name'];
 $article_date = $chosenArticle['art_date'];
+}
 if(isset($_REQUEST['update'])) {
     $art_theme = $_REQUEST['article_theme'];
     $art_name = $_REQUEST['article_name'];

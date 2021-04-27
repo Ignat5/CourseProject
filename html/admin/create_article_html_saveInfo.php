@@ -41,7 +41,7 @@
 
 </form>
 
-<script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
 <script type="text/javascript">
     var ckeditor = CKEDITOR.replace('article_context');
 </script>

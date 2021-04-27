@@ -15,11 +15,11 @@ if (isset($_REQUEST['create'])) {
     $form_context = $_REQUEST['article_context'];
     //validation
     try {
-        echo 'isAdmin: '.$isAdmin.'<hr>';
+       /* echo 'isAdmin: '.$isAdmin.'<hr>';
         echo 'ID: '.$authorID.'<hr>';
         echo 'name: '.$form_name.'<hr>';
         echo 'theme: '.$form_theme.'<hr>';
-        echo 'context: '.$form_context.'<hr>';
+        echo 'context: '.$form_context.'<hr>';*/
         Article::isArticleValid($form_theme, $form_name, $form_context);
         $article = new Article($form_name, $form_theme, $form_context, $isAdmin, $authorID);
         $article->post_article();
@@ -29,7 +29,7 @@ if (isset($_REQUEST['create'])) {
     }
 }
 if (isset($_REQUEST['create'])) {
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/CourseProject/html/user/offer_article_html.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/CourseProject/html/user/offer_article_html_saveInfo.php');
 } else {
     require_once($_SERVER['DOCUMENT_ROOT'] . '/CourseProject/html/user/offer_article_html.php');
     ?>

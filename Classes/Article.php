@@ -63,9 +63,19 @@ class Article {
         }
         $connection->close();
     }
+    public static function publish_article ($art_id) {
+        $connection = Connection::getConnection();
+        $query = "UPDATE articles SET art_date = CURRENT_DATE(),art_isApproved = 1 WHERE art_id = $art_id";
+        $result = $connection->query($query);
+        $connection->close();
+        return $result;
+    }
+
+
+
     public static function getArticles() {
         $connection = Connection::getConnection();
-        $query = "SELECT art_name,art_date,art_isApproved,art_id FROM articles";
+        $query = "SELECT art_name,art_date,art_isApproved,art_id FROM articles WHERE art_isApproved = 1";
         if($result = $connection->query($query)) {
                 $result->fetch_all();
         }else {
@@ -73,11 +83,20 @@ class Article {
         }
         $connection->close();
         return $result;
-
+    }
+    public static function getDefaultArticle() {
+        $connection = Connection::getConnection();
+        $query = "SELECT art_name,art_theme,art_context,art_date,art_id,users.user_name FROM articles INNER JOIN users ON users.user_id = art_authorID WHERE art_isApproved = 1";
+        $result = $connection->query($query);
+        $connection->close();
+        if($result) {
+            $row = $result->fetch_assoc();
+            return $row;
+        }else {return false;}
     }
     public static function getArticlesOfUser($userID) {
         $connection = Connection::getConnection();
-        $query = "SELECT art_name,art_date,art_isApproved,art_id FROM articles WHERE art_authorID = $userID AND art_isApproved = 0";
+        $query = "SELECT art_name,art_date,art_isApproved,art_id FROM articles WHERE art_authorID = $userID";
         if($result = $connection->query($query)) {
             $result->fetch_all();
         }else {
@@ -99,9 +118,32 @@ class Article {
         $connection->close();
         return $result;
     }
+    public static function getRequestedArticles() {
+        $connection = Connection::getConnection();
+        $query = "SELECT art_name,art_date,art_isApproved,art_id FROM articles WHERE art_isApproved = 0";
+        if($result = $connection->query($query)) {
+            $result->fetch_all();
+        }else {
+            echo 'getArticlesOfUser problem';
+        }
+        $connection->close();
+        return $result;
+    }
+    public static function getDefaultRequestedArticle() {
+        $connection = Connection::getConnection();
+        $query = "SELECT art_name,art_date,art_isApproved,art_id FROM articles WHERE art_isApproved = 0";
+        if($result = $connection->query($query)) {
+            $row = $result->fetch_assoc();
+        }else {
+            echo 'getArticlesOfUser problem';
+            $row = false;
+        }
+        $connection->close();
+        return $row;
+    }
     public static function getDefaultArticleOfUser($userID) {
         $connection = Connection::getConnection();
-        $query = "SELECT art_id FROM articles WHERE art_authorID = $userID AND art_isApproved = 0 LIMIT 1";
+        $query = "SELECT art_id FROM articles WHERE art_authorID = $userID LIMIT 1";
         if($result = $connection->query($query)) {
             $result = $result->fetch_assoc();
             $connection->close();
