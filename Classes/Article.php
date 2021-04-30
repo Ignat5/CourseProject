@@ -158,5 +158,30 @@ class Article {
             throw new Exception('Заполните все поля!');
         }
     }
+    //menu
+    public static function getThemes() {
+        $connection = Connection::getConnection();
+        $query = "SELECT DISTINCT art_theme FROM articles";
+        $result = $connection->query($query);
+        $connection->close();
+        if(!$result) {
+            die('Не удалось получить темы статей');
+        }
+        $row = $result->fetch_all();
+        return $row;
+    }
+    public static function getArticlesOfTheme($theme) {
+        $connection = Connection::getConnection();
+        $query = "SELECT art_name,art_id FROM articles WHERE art_theme = '$theme'";
+        $result = $connection->query($query);
+        $connection->close();
+        if(!$result) {
+            die('Не удалось получить статьи по данной теме');
+        }
+        $row = $result->fetch_all();
+        return $row;
+    }
+
+
 }
 ?>
