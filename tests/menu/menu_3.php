@@ -119,8 +119,14 @@ echo '</div>';*/
 if(isset($_GET['theme'])) {
 ?>
     <script>
+        <?php if($_SESSION['isAdmin']==2) { ?>
+        var context = document.getElementById("context");
+        context.style.width = "60%";
+        <?php } else { ?>
+
         var context = document.getElementById("context");
         context.style.width = "70%";
+        <?php } ?>
     var articles = document.getElementById("art");
     articles.style.width = "20%";
     articles.style.visibility = "visible";

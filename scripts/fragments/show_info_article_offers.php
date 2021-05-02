@@ -6,7 +6,7 @@ if($_SESSION['isAdmin'] == 0) {
     if($article_user = Article::getDefaultArticleOfUser($_SESSION['user_id'])) {
     $art_id = $article_user['art_id'];
 }else {
-        die('На данный момент ни одной из ваших статей нет в предложенных');
+        die('');
     }
 }
 if($_SESSION['isAdmin'] == 1) {

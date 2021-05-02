@@ -41,8 +41,8 @@ if(!isset($_SESSION['user_name'])) {
             margin: auto;
             background-color: darkgray;
             float: left;
-            width: 90%;
-            <?php //if($isOpen) {echo 'width: 70%';}else {echo 'width: 90%';} ?>
+            width: 80%;
+            <?php if($_SESSION['isAdmin']==0){ echo 'width:90%';} ?>
         <?php //if($role!=2) {echo 'width: 80%';} ?>
 
         }

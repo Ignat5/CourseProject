@@ -54,8 +54,6 @@
     var ckeditor = CKEDITOR.replace('article_context',{
        width:1500,height:700});
 
-    ckeditor
-
 </script>
 </body>
 </html>

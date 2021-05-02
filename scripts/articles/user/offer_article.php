@@ -31,7 +31,8 @@ if (isset($_REQUEST['create'])) {
 if (isset($_REQUEST['create'])) {
     require_once($_SERVER['DOCUMENT_ROOT'] . '/CourseProject/html/user/offer_article_html_saveInfo.php');
 } else {
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/CourseProject/html/user/offer_article_html.php');
+    //require_once($_SERVER['DOCUMENT_ROOT'] . '/CourseProject/html/user/offer_article_html.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/CourseProject/tests/offer_article_html_new.php');
     ?>
 <?php
 }

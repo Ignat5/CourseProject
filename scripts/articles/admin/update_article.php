@@ -5,7 +5,7 @@ $chosenArticle = array();
 $art_id = 2;
 if(isset($_GET['art_id'])) {
     $art_id = $_GET['art_id'];
-    echo $art_id;
+    //echo $art_id;
 if (!$chosenArticle = Article::getArticleById($_GET['art_id'])) {
 die('Запрос не был отправлен');
 }
@@ -29,6 +29,7 @@ if(isset($_REQUEST['update'])) {
     header('Location:'.$main_url);
 
 }
-require_once($_SERVER['DOCUMENT_ROOT'] . '/CourseProject/html/admin/update_article_html.php');
+//require_once($_SERVER['DOCUMENT_ROOT'] . '/CourseProject/html/admin/update_article_html.php');
+require_once($_SERVER['DOCUMENT_ROOT'] .'/CourseProject/tests/update_article_html_new.php');
 
 ?>

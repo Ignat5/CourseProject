@@ -172,7 +172,7 @@ class Article {
     }
     public static function getArticlesOfTheme($theme) {
         $connection = Connection::getConnection();
-        $query = "SELECT art_name,art_id FROM articles WHERE art_theme = '$theme'";
+        $query = "SELECT art_name,art_id FROM articles WHERE art_theme = '$theme' AND art_isApproved = 1";
         $result = $connection->query($query);
         $connection->close();
         if(!$result) {

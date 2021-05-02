@@ -12,6 +12,8 @@ if(isset($_REQUEST['create'])) {
     $form_name = $_REQUEST['article_name'];
     $form_theme = $_REQUEST['article_theme'];
     $form_context = $_REQUEST['article_context'];
+    $theme = $_REQUEST['article_theme'];
+
     //validation
     try {
         Article::isArticleValid($form_theme,$form_name,$form_context);
@@ -23,7 +25,9 @@ if(isset($_REQUEST['create'])) {
     }
 }
 if(isset($_REQUEST['create'])) {
-        require_once($_SERVER['DOCUMENT_ROOT'] . '/CourseProject/html/admin/create_article_html_saveInfo.php');
+        //require_once($_SERVER['DOCUMENT_ROOT'] . '/CourseProject/html/admin/create_article_html_saveInfo.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/CourseProject/tests/create_article_html_new_saveInfo.php');
 }else {
-        require_once($_SERVER['DOCUMENT_ROOT'] . '/CourseProject/html/admin/create_article_html.php');
+        //require_once($_SERVER['DOCUMENT_ROOT'] . '/CourseProject/html/admin/create_article_html.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/CourseProject/tests/create_article_html_new.php');
 }
