@@ -47,13 +47,13 @@ if(isset($_COOKIE['user_id'])) {
         $_SESSION['user_id'] = $user_row['user_id'];
         $_SESSION['user_name'] = $user_row['user_name'];
         $_SESSION['isAdmin'] = $user_row['isAdmin'];
-        echo 'Вы авторизированы, '.$_SESSION['user_name'].'<hr>';
+        //echo 'Вы авторизированы, '.$_SESSION['user_name'].'<hr>'; 123
     }catch (UserException $exception) {
         die($exception->getMessage());
     }
 }else {
 //user in not authorised
-    echo 'You are not authorized!';
+    //echo 'You are not authorized!';
 }
 
 if(isset($_SESSION['isAdmin'])) {
