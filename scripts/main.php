@@ -18,7 +18,8 @@
     }
     .div_menu {
         float: left;
-        width: 150px;
+        /*width: 150px;*/
+        width: 15%;
         background-color: antiquewhite;
         text-align: left;
         /*max-width: 150px;*/
@@ -56,7 +57,7 @@
         margin: 0px;
     }
 
-    @media only screen and (max-width: 915px) {
+    @media only screen and (max-width: 1031px) {
             .ul_menu{
                 background-color: blue;
             }
@@ -70,9 +71,9 @@
                 text-align: center;
             }
     }
-    @media only screen and (min-width: 915px) {
+    @media only screen and (min-width: 1031px) {
         .articles {
-            max-width: 15%;
+            max-width: 20%;
             width: 20%;
             background-color: hotpink;
             text-align: left;
@@ -131,7 +132,7 @@ echo '</div>';
 <!--read_article.php-->
 <?php if(!isset($_GET['theme'])) {
     ?>
-    <div id="art" class="articles">
+    <!--<div id="art1" class="articles1">
         <ul>
             <li><a href="#a1">Статья 1</a></li>
             <li><a href="#a2">Статья 2</a></li>
@@ -140,7 +141,7 @@ echo '</div>';
             <li><a href="#a5">Статья 5</a></li>
             <li class="collapse" onclick="collapseArticles()">свернуть</li>
         </ul>
-    </div>
+    </div> -->
     <?php
 } else {
     $articles_row = Article::getArticlesOfTheme($_GET['theme']);
@@ -161,17 +162,17 @@ if(isset($_GET['theme'])) {
         <?php
         if($_SESSION['isAdmin']==1)  { ?>
         var context = document.getElementById("context");
-        context.style.width = "65%";
+        context.style.width = "70%";
 
         //alert(window.innerWidth);
-        <?php } else { ?>
+        <?php }else { ?>
 
         var context = document.getElementById("context");
         //alert('here');
         context.style.width = "70%";
         <?php } ?>
         var width = window.innerWidth;
-        if(width>915) {
+        if(width>1031) {
             var articles = document.getElementById("art");
             articles.style.width = "20%";
             articles.style.visibility = "visible";

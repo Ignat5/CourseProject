@@ -36,15 +36,16 @@ if(!isset($_SESSION['user_name'])) {
     <meta charset="UTF-8">
     <title>Read</title>
     <style>
+
         .center {
             text-align: center;
             margin: 0px;
-            margin-top: 30px;
             background-color: darkgray;
             float: left;
             width: 85%;
             position: relative;
             overflow: hidden;
+            min-width: 85%;
             /*min-width: 40%;*/
             <?php if($_SESSION['isAdmin']==0){ echo 'width:90%';} ?>
         <?php //if($role!=2) {echo 'width: 80%';} ?>
@@ -53,18 +54,23 @@ if(!isset($_SESSION['user_name'])) {
         .change {
             width: 20%;
             background-color: darkcyan;
-            right: 0px;
+            right: 0;
             position: absolute;
-            top: 0px;
-            right: 0px;
+            top: 0;
         }
-        @media only screen and (max-width: 915px) {
+        @media only screen and (max-width: 1031px) {
             .center{
                 width: 100%;
                 min-width: 100%;
             }
             .change{width: 100%;}
         }
+        /*@media only screen and (min-width: 1031px) {
+            .center{
+                width: 70%;
+                min-width: 70%;
+            }
+        }*/
     </style>
 </head>
 <body>
@@ -72,6 +78,7 @@ if(!isset($_SESSION['user_name'])) {
 
 
 <div id="context" class="center">
+    <br>
     <h2><?php echo 'Тема статьи: '.$article_theme?></h2>
     <h3><?php echo 'Название статьи: '.$article_name?></h3>
     <h5><?php echo 'Дата публикации: '.$article_date?></h5>
