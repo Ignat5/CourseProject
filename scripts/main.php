@@ -5,22 +5,39 @@
 </head>
 
 <style>
+    * {
+        box-sizing: border-box;
+    }
+
     a{
         text-decoration: none;
+        margin: 0px;
     }
     li{
-        margin-top: 10px;
+        margin-top: 0px;
     }
     .div_menu {
         float: left;
-        width: 10%;
+        width: 150px;
         background-color: antiquewhite;
+        text-align: left;
+        max-width: 150px;
+        display: inline-block;
+        margin-top: 0px;
+        padding: 0px;
+
+        <!-- -->
     }
     ul {
         list-style-type: none;
     }
     li.theme {
         cursor: pointer;
+        background-color: red;
+        margin-bottom: 20px;
+        font-size: 25px;
+        padding: 0px;
+        margin-top: 0px;
     }
     li.collapse {
         cursor: pointer;
@@ -30,6 +47,13 @@
         background-color: teal;
         float: left;
         width: 0%;
+        margin: 0px;
+    }
+    .ul_menu {
+        background-color: green;
+        text-align: left;
+        padding: 0px;
+        margin: 0px;
     }
 </style>
 
@@ -47,7 +71,7 @@ if(isset($_COOKIE['user_id'])) {
         $_SESSION['user_id'] = $user_row['user_id'];
         $_SESSION['user_name'] = $user_row['user_name'];
         $_SESSION['isAdmin'] = $user_row['isAdmin'];
-        //echo 'Вы авторизированы, '.$_SESSION['user_name'].'<hr>'; 123
+        //echo 'Вы авторизированы, '.$_SESSION['user_name'].'<hr>';
     }catch (UserException $exception) {
         die($exception->getMessage());
     }
@@ -72,7 +96,7 @@ if(isset($_SESSION['isAdmin'])) {
 
 $allThemes = Article::getThemes();
 echo '<div class="div_menu">';
-echo '<ul>';
+echo '<ul class = ul_menu>';
 foreach ($allThemes as $theme) {
     echo '<li class="theme">' . '<a onclick="showArticles(this)">' . $theme[0] . '</a>' . '</li>';
 }
