@@ -12,8 +12,11 @@
             position: fixed;
             top: 0;
             width: 100%;
-            overflow: hidden;
-            /*min-width: 500px;*/
+            z-index: 1;
+
+            /*width: 100px;*/
+            /*overflow: hidden;*/
+            /*min-width: 900px;*/
         }
 
 
@@ -26,6 +29,8 @@
             position: fixed;
             top: 0;
             width: 100%;
+            min-width: 900px;
+            /*max-width: 100%;*/
             /*max-width: 100%;
             min-width: 850px;*/
         }
@@ -49,6 +54,9 @@
 
         div.appbar li a:hover {
             background-color: #111;
+        }
+        @media only screen and (min-width: 500px) {
+
         }
 
 

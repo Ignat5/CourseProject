@@ -21,7 +21,7 @@
         width: 150px;
         background-color: antiquewhite;
         text-align: left;
-        max-width: 150px;
+        /*max-width: 150px;*/
         display: inline-block;
         margin-top: 0px;
         padding: 0px;
@@ -55,6 +55,30 @@
         padding: 0px;
         margin: 0px;
     }
+
+    @media only screen and (max-width: 915px) {
+            .ul_menu{
+                background-color: blue;
+            }
+        li.theme {
+            text-align: center;
+        }
+            .div_menu{width: 100%;}
+            .articles{
+                width: 100%;
+                max-width: 100%;
+                text-align: center;
+            }
+    }
+    @media only screen and (min-width: 915px) {
+        .articles {
+            max-width: 15%;
+            width: 20%;
+            background-color: hotpink;
+            text-align: left;
+        }
+    }
+
 </style>
 
 <body>
@@ -137,32 +161,35 @@ if(isset($_GET['theme'])) {
         <?php
         if($_SESSION['isAdmin']==1)  { ?>
         var context = document.getElementById("context");
-        context.style.width = "60%";
+        context.style.width = "65%";
+
+        //alert(window.innerWidth);
         <?php } else { ?>
 
         var context = document.getElementById("context");
         //alert('here');
         context.style.width = "70%";
         <?php } ?>
-        var articles = document.getElementById("art");
-        articles.style.width = "20%";
-        articles.style.visibility = "visible";
+        var width = window.innerWidth;
+        if(width>915) {
+            var articles = document.getElementById("art");
+            articles.style.width = "20%";
+            articles.style.visibility = "visible";
+        }else {
+            var articles = document.getElementById("art");
+            articles.style.width = "100%";
+            articles.style.visibility = "visible";
+        }
     </script>
     <?php
 }
 ?>
 <script>
     function showArticles(elementID) {
-        var articles = document.getElementById("art");
-        if (articles.style.width == "20%") {
-            //alert('articles are open now');
+            var articles = document.getElementById("art");
             var theme_name = elementID.innerHTML;
             window.location.href = "main.php?art_id="+"<?php global $art_id; echo $art_id;?>" +"&theme=" + theme_name;
-        }else{
-            //alert('articles are closed now');
-            var theme_name = elementID.innerHTML;
-            window.location.href = "main.php?art_id="+"<?php global $art_id; echo $art_id;?>" +"&theme=" + theme_name;
-        }
+
     }
     function collapseArticles() {
         var articles = document.getElementById("art");
