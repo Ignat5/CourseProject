@@ -52,7 +52,7 @@ if(!isset($_SESSION['user_name'])) {
 
         }
         .change {
-            width: 20%;
+            width: 25%;
             background-color: darkcyan;
             right: 0;
             position: absolute;
@@ -67,8 +67,8 @@ if(!isset($_SESSION['user_name'])) {
         }
         /*@media only screen and (min-width: 1031px) {
             .center{
-                width: 70%;
-                min-width: 70%;
+                width: 65%;
+                min-width: 65%;
             }
         }*/
     </style>

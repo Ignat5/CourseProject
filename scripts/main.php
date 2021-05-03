@@ -68,10 +68,12 @@
             .articles{
                 width: 100%;
                 max-width: 100%;
+                background-color: blue;
                 text-align: center;
             }
+
     }
-    @media only screen and (min-width: 1031px) {
+    @media only screen and (min-width: 1032px) {
         .articles {
             max-width: 20%;
             width: 20%;
@@ -162,7 +164,8 @@ if(isset($_GET['theme'])) {
         <?php
         if($_SESSION['isAdmin']==1)  { ?>
         var context = document.getElementById("context");
-        context.style.width = "70%";
+        context.style.width = "20%";
+        //alert('ok');
 
         //alert(window.innerWidth);
         <?php }else { ?>
@@ -182,8 +185,17 @@ if(isset($_GET['theme'])) {
             articles.style.visibility = "visible";
         }
     </script>
+
+    <script>
+        function alertMessage() {
+            alert("resize123");
+        }
+
+        window.addEventListener("resize",alertMessage);
+    </script>
     <?php
 }
+
 ?>
 <script>
     function showArticles(elementID) {
