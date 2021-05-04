@@ -16,6 +16,12 @@
     li{
         margin-top: 0px;
     }
+
+    ul.ul_menu li:last-child {
+        color: gold;
+        margin-bottom: 0px;
+    }
+
     .div_menu {
         float: left;
         /*width: 150px;*/
@@ -36,7 +42,7 @@
         cursor: pointer;
         background-color: red;
         margin-bottom: 20px;
-        font-size: 25px;
+        font-size: 20px;
         padding: 0px;
         margin-top: 0px;
     }
@@ -66,8 +72,11 @@
         }
             .div_menu{width: 100%;}
             .articles{
-                width: 100%;
+                /*width: 100%;
                 max-width: 100%;
+                min-width: 100%;*/
+                width: 100%;
+                min-width: 100%;
                 background-color: blue;
                 text-align: center;
             }
@@ -82,9 +91,14 @@
         }
     }
 
+
 </style>
 
 <body>
+
+<script>
+    var isOpen = false;
+</script>
 
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/User.php');
@@ -164,7 +178,7 @@ if(isset($_GET['theme'])) {
         <?php
         if($_SESSION['isAdmin']==1)  { ?>
         var context = document.getElementById("context");
-        context.style.width = "20%";
+        context.style.width = "65%";
         //alert('ok');
 
         //alert(window.innerWidth);
@@ -186,17 +200,10 @@ if(isset($_GET['theme'])) {
         }
     </script>
 
-    <script>
-        function alertMessage() {
-            alert("resize123");
-        }
-
-        window.addEventListener("resize",alertMessage);
-    </script>
-    <?php
+<?php
 }
-
 ?>
+
 <script>
     function showArticles(elementID) {
             var articles = document.getElementById("art");
@@ -210,7 +217,7 @@ if(isset($_GET['theme'])) {
         articles.style.visibility = "hidden";
         <?php if($_SESSION['isAdmin'] == 1) { ?>
         var context = document.getElementById("context");
-        context.style.width = "80%";
+        context.style.width = "85%";
         <?php } else { ?>
         var context = document.getElementById("context");
         context.style.width = "90%";
@@ -219,3 +226,4 @@ if(isset($_GET['theme'])) {
 </script>
 
 </body>
+</html>

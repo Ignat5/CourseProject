@@ -45,19 +45,35 @@ if(!isset($_SESSION['user_name'])) {
             width: 85%;
             position: relative;
             overflow: hidden;
-            min-width: 85%;
+            /*min-width: 85%;*/
             /*min-width: 40%;*/
             <?php if($_SESSION['isAdmin']==0){ echo 'width:90%';} ?>
-        <?php //if($role!=2) {echo 'width: 80%';} ?>
 
         }
         .change {
-            width: 25%;
-            background-color: darkcyan;
-            right: 0;
+            width: 100%;
             position: absolute;
             top: 0;
+            padding: 5px;
         }
+
+        div.inner {
+            position: relative;
+        }
+
+        a.last {
+            position: absolute;
+            right: 0;
+            color: #111111;
+        }
+        a.first {
+            position: absolute;
+            left: 0;
+            color: #111111;
+        }
+
+
+
         @media only screen and (max-width: 1031px) {
             .center{
                 width: 100%;
@@ -98,11 +114,14 @@ if(!isset($_SESSION['user_name'])) {
             '?art_id='.$art_id;
 
         echo '<div class = "change">';
-        echo '<a href='.$path_update.'>Редактировать статью</a>'.'<hr>';
-        echo '<a href='.$path_delete.'>Удалить статью</a>'.'<hr>';
+        echo '<div class="inner">';
+        echo '<a href='.$path_update.' class="first">Редактировать статью</a>';
+        echo '<a href='.$path_delete.' class="last">Удалить статью</a>';
+        echo '</div>';
         echo '</div>';
     }
     ?>
+
 
 </div>
 
