@@ -45,6 +45,15 @@
         font-size: 20px;
         padding: 0px;
         margin-top: 0px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    li.theme:hover {
+        overflow: visible;
+        text-overflow: unset;
+        overflow-wrap: break-word;
+        white-space: pre-line;
+        padding-right: 15px;
     }
     li.collapse {
         cursor: pointer;
@@ -53,7 +62,7 @@
     }
     div.articles ul {
         background-color: #dddddd;
-        display: inline-block;
+        /*display: inline-block;*/
         padding: 10px;
         margin-top: 0;
         margin: 0;
@@ -61,6 +70,16 @@
     ul.ul_article li {
         background-color: darkgray;
         margin-top: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    ul.ul_article li:hover {
+        background-color: red;
+        overflow-wrap: break-word;
+        text-overflow: unset;
+        white-space: pre-line;
+        /*word-break: break-all;*/
+
     }
     ul.ul_article li:first-child {
         margin-top: 0px;
@@ -72,6 +91,7 @@
         width: 0%;
         margin: 0px;
         font-size: 20px;
+        left: 0;
 
     }
     .ul_menu {
@@ -79,6 +99,10 @@
         text-align: left;
         padding: 0px;
         margin: 0px;
+    }
+
+    li.theme a {
+        background-color: lightskyblue;
     }
 
 
@@ -114,11 +138,6 @@
 </style>
 
 <body>
-
-<script>
-    var isOpen = false;
-</script>
-
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/User.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
@@ -149,7 +168,7 @@ if(isset($_SESSION['isAdmin'])) {
 
 }else {
     require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/scripts/fragments/appbars/appbar_not_auth_user.php');
-    session_start();
+    //session_start();
     $_SESSION['isAdmin'] = 0;
 }
 //require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/scripts/fragments/appbars/appbar_not_auth_user.php');
@@ -165,20 +184,7 @@ echo '</div>';
 
 ?>
 <!--read_article.php-->
-<?php if(!isset($_GET['theme'])) {
-    ?>
-    <!--<div id="art1" class="articles1">
-        <ul>
-            <li><a href="#a1">Статья 1</a></li>
-            <li><a href="#a2">Статья 2</a></li>
-            <li><a href="#a3">Статья 3</a></li>
-            <li><a href="#a4">Статья 4</a></li>
-            <li><a href="#a5">Статья 5</a></li>
-            <li class="collapse" onclick="collapseArticles()">свернуть</li>
-        </ul>
-    </div> -->
-    <?php
-} else {
+<?php if(isset($_GET['theme'])) {
     $articles_row = Article::getArticlesOfTheme($_GET['theme']);
     echo '<div id="art" class="articles">';
     echo '<ul class="ul_article">';

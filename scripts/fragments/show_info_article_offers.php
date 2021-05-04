@@ -53,13 +53,30 @@ if(!isset($_SESSION['user_name'])) {
             margin: auto;
             background-color: darkgray;
             float: left;
-            width: 70%;
+            width: 80%;
+            position: relative;
         <?php if($role!=2) {echo 'width: 80%';} ?>
         }
+        div.inner {
+            position: relative;
+            background-color: red;
+        }
         .change {
+            position: absolute;
+            top: 0;
             float: left;
-            width: 10%;
+            width: 100%;
             background-color: darkcyan;
+        }
+        a.last {
+            position: absolute;
+            right: 0;
+            color: #111111;
+        }
+        a.first {
+            position: absolute;
+            left: 0;
+            color: #111111;
         }
 
         @media only screen and (max-width: 1031px) {
@@ -85,7 +102,6 @@ if(!isset($_SESSION['user_name'])) {
     <p><?php echo $article_context?></p>
     <hr>
     <h4><?php echo 'Автор статьи: '.$article_author?></h4>
-</div>
 <?php
 if($_SESSION['isAdmin']) {
     $path_publish = '/CourseProject/scripts/articles/admin/publish_requested_article.php'
@@ -93,12 +109,14 @@ if($_SESSION['isAdmin']) {
     $path_delete = '/CourseProject/scripts/articles/admin/delete_requested_article.php'
         .'?art_id='.$art_id;
     echo '<div class = "change">';
-    echo '<a href="'.$path_publish.'">Опубликовать статью</a>' . '<hr>';
-    echo '<a href="'.$path_delete.'">Удалить статью</a>' . '<hr>';
+    echo '<div class="inner">';
+    echo '<a href="'.$path_publish.'" class="first">Опубликовать статью</a>';
+    echo '<a href="'.$path_delete.'" class="last">Удалить статью</a>';
+    echo '</div>';
     echo '</div>';
 }
     ?>
-
+</div>
 </body>
 
 </html>

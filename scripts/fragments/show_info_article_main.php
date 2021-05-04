@@ -45,8 +45,6 @@ if(!isset($_SESSION['user_name'])) {
             width: 85%;
             position: relative;
             overflow: hidden;
-            /*min-width: 85%;*/
-            /*min-width: 40%;*/
             <?php if($_SESSION['isAdmin']==0){ echo 'width:85%';} ?>
 
         }
