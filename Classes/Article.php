@@ -181,6 +181,27 @@ class Article {
         $row = $result->fetch_all();
         return $row;
     }
+    //themes/topics
+    public static function changeNameOfTheme($old_theme_name,$new_theme_name) {
+        $connection = Connection::getConnection();
+        $query = "UPDATE articles SET art_theme='$new_theme_name' WHERE art_theme='$old_theme_name'";
+        $result = $connection->query($query);
+        if($result) {
+            return true;
+        }else {
+            die('cant update name of theme');
+        }
+    }
+    public static function deleteTheme($theme_name) {
+        $connection = Connection::getConnection();
+        $query = "DELETE FROM articles WHERE art_theme='$theme_name'";
+        $result = $connection->query($query);
+        if($result) {
+            return true;
+        }else {
+            die('cant delete this topic');
+        }
+    }
 
 
 }

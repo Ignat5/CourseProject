@@ -26,7 +26,7 @@
         float: left;
         /*width: 150px;*/
         width: 15%;
-        /*background-color: antiquewhite;*/
+        background-color: lightpink;
         text-align: left;
         /*max-width: 150px;*/
         display: inline-block;
@@ -101,10 +101,17 @@
         margin: 0px;
     }
 
-    li.theme a {
-        /*background-color: lightskyblue;*/
+    p.topic {
+        text-align: center;
     }
-
+    a.edit:hover {
+        opacity: 0.8;
+    }
+    a.edit {
+        display: block;
+        text-align: center;
+        opacity: 0.5;
+    }
 
     @media only screen and (max-width: 1031px) {
             .ul_menu{
@@ -175,11 +182,17 @@ if(isset($_SESSION['isAdmin'])) {
 
 $allThemes = Article::getThemes();
 echo '<div class="div_menu">';
+echo '<p class="topic">Разделы</p>';
+echo '<hr>';
 echo '<ul class = ul_menu>';
 foreach ($allThemes as $theme) {
     echo '<li class="theme">' . '<a onclick="showArticles(this)">' . $theme[0] . '</a>' . '</li>';
 }
 echo '</ul>';
+if($_SESSION['isAdmin']==1) {
+    echo '<hr>';
+    echo '<a href="/CourseProject/scripts/articles/admin/update_theme.php" class="edit">Редактировать раздел</a>';
+}
 echo '</div>';
 
 ?>
