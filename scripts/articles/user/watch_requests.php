@@ -28,6 +28,14 @@
         color: red;
     }
 
+    @media only screen and (max-width: 1031px) {
+        .div_menu{
+            width: 100%;
+            text-align: center;
+        }
+
+    }
+
 </style>
 
 <body>

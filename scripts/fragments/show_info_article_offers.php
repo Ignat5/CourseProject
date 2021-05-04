@@ -61,6 +61,14 @@ if(!isset($_SESSION['user_name'])) {
             width: 10%;
             background-color: darkcyan;
         }
+
+        @media only screen and (max-width: 1031px) {
+            .center {
+                width: 100%;
+            }
+
+        }
+
     </style>
 </head>
 <body>

@@ -16,6 +16,7 @@
             position: fixed;
             top: 0;
             width: 100%;
+            min-width: 900px;
         }
 
         div.appbar li {

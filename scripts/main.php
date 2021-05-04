@@ -48,6 +48,22 @@
     }
     li.collapse {
         cursor: pointer;
+        background-color: aqua;
+        text-align: center;
+    }
+    div.articles ul {
+        background-color: #dddddd;
+        display: inline-block;
+        padding: 10px;
+        margin-top: 0;
+        margin: 0;
+    }
+    ul.ul_article li {
+        background-color: darkgray;
+        margin-top: 20px;
+    }
+    ul.ul_article li:first-child {
+        margin-top: 0px;
     }
     .articles {
         visibility: hidden;
@@ -55,6 +71,8 @@
         float: left;
         width: 0%;
         margin: 0px;
+        font-size: 20px;
+
     }
     .ul_menu {
         background-color: green;
@@ -62,6 +80,7 @@
         padding: 0px;
         margin: 0px;
     }
+
 
     @media only screen and (max-width: 1031px) {
             .ul_menu{
@@ -162,7 +181,7 @@ echo '</div>';
 } else {
     $articles_row = Article::getArticlesOfTheme($_GET['theme']);
     echo '<div id="art" class="articles">';
-    echo '<ul>';
+    echo '<ul class="ul_article">';
     $allArticles = Article::getArticlesOfTheme($_GET['theme']);
     foreach ($allArticles as $article) {
         echo '<li>'.'<a href = '.$_SERVER['PHP_SELF'].'?art_id='.intval($article[1]).'>'."{$article[0]}".'</a>'.'</li>';
@@ -186,7 +205,7 @@ if(isset($_GET['theme'])) {
 
         var context = document.getElementById("context");
         //alert('here');
-        context.style.width = "70%";
+        context.style.width = "65%";
         <?php } ?>
         var width = window.innerWidth;
         if(width>1031) {
@@ -213,14 +232,13 @@ if(isset($_GET['theme'])) {
     }
     function collapseArticles() {
         var articles = document.getElementById("art");
-        articles.style.width = "0%";
-        articles.style.visibility = "hidden";
+        articles.style.display = "none";
         <?php if($_SESSION['isAdmin'] == 1) { ?>
         var context = document.getElementById("context");
         context.style.width = "85%";
         <?php } else { ?>
         var context = document.getElementById("context");
-        context.style.width = "90%";
+        context.style.width = "85%";
         <?php }?>
     }
 </script>
