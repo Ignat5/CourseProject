@@ -27,6 +27,18 @@
     b.notAccepted {
         color: red;
     }
+    ul.ul_articles li {
+        /*background-color: lightskyblue;*/
+    }
+    ul.ul_articles {
+        /*background-color: lightpink;*/
+        margin: 0;
+        padding: 0;
+        padding-left: 5px;
+    }
+    pre.message {
+        text-align: center;
+    }
 
     @media only screen and (max-width: 1031px) {
         .div_menu{
@@ -50,7 +62,7 @@ $allArticles = Article::getArticlesOfUser($_SESSION['user_id']);
 $number_rows =  $allArticles->num_rows;
 if($number_rows!=0) {
 echo '<div class="div_menu">';
-echo '<ul style="list-style-type: none">';
+echo '<ul style="list-style-type: none" class="ul_articles">';
 $status = '';
 $class = '';
 foreach ($allArticles as $article) {
@@ -63,7 +75,14 @@ echo '</ul>';
 echo '</div>';
 }else {
     ?>
-    <p style="background-color: teal">SOMETHING HERE WHEN THERE IS NO OFFERS</p>
+    <pre class="message">
+        Вы не предложили ни одной статьи,
+            либо все ваши запросы были отклонены.
+
+           Каждая одобренная статья или статья,
+          находящаяся на стадии рассмотрения,
+        будет отображена данной странице.
+    </pre>
 <?php
 }
 ?>

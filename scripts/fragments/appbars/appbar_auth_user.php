@@ -8,6 +8,7 @@
         }
 
         div.appbar ul {
+            z-index: 1;
             list-style-type: none;
             margin: 0;
             padding: 0;

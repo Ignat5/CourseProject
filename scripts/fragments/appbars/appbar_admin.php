@@ -25,7 +25,7 @@
             margin: 0px;
             padding: 0px;
             overflow: hidden;
-            background-color: #332;
+            background-color: #333;
             position: fixed;
             top: 0;
             width: 100%;
@@ -40,7 +40,7 @@
             margin: 0px;
             /*max-width: 400px;
             min-width: 150px;*/
-            background-color: red;
+            /*background-color: red;*/
         }
 
         div.appbar li a {

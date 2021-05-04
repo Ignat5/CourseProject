@@ -111,7 +111,7 @@ if($_SESSION['isAdmin']) {
     echo '<div class = "change">';
     echo '<div class="inner">';
     echo '<a href="'.$path_publish.'" class="first">Опубликовать статью</a>';
-    echo '<a href="'.$path_delete.'" class="last">Удалить статью</a>';
+    echo '<a href="'.$path_delete.'" class="last">Отклонить статью</a>';
     echo '</div>';
     echo '</div>';
 }

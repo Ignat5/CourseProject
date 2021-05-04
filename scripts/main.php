@@ -18,7 +18,7 @@
     }
 
     ul.ul_menu li:last-child {
-        color: gold;
+        /*color: gold;*/
         margin-bottom: 0px;
     }
 
@@ -26,7 +26,7 @@
         float: left;
         /*width: 150px;*/
         width: 15%;
-        background-color: antiquewhite;
+        /*background-color: antiquewhite;*/
         text-align: left;
         /*max-width: 150px;*/
         display: inline-block;
@@ -40,7 +40,7 @@
     }
     li.theme {
         cursor: pointer;
-        background-color: red;
+        /*background-color: red;*/
         margin-bottom: 20px;
         font-size: 20px;
         padding: 0px;
@@ -53,28 +53,28 @@
         text-overflow: unset;
         overflow-wrap: break-word;
         white-space: pre-line;
-        padding-right: 15px;
+        /*padding-right: 15px;*/
     }
     li.collapse {
         cursor: pointer;
-        background-color: aqua;
+        /*background-color: aqua;*/
         text-align: center;
     }
     div.articles ul {
-        background-color: #dddddd;
+        /*background-color: #dddddd;*/
         /*display: inline-block;*/
         padding: 10px;
         margin-top: 0;
         margin: 0;
     }
     ul.ul_article li {
-        background-color: darkgray;
+        /*background-color: darkgray;*/
         margin-top: 20px;
         overflow: hidden;
         text-overflow: ellipsis;
     }
     ul.ul_article li:hover {
-        background-color: red;
+        /*background-color: red;*/
         overflow-wrap: break-word;
         text-overflow: unset;
         white-space: pre-line;
@@ -86,7 +86,7 @@
     }
     .articles {
         visibility: hidden;
-        background-color: teal;
+        /*background-color: teal;*/
         float: left;
         width: 0%;
         margin: 0px;
@@ -95,20 +95,20 @@
 
     }
     .ul_menu {
-        background-color: green;
+        /*background-color: green;*/
         text-align: left;
         padding: 0px;
         margin: 0px;
     }
 
     li.theme a {
-        background-color: lightskyblue;
+        /*background-color: lightskyblue;*/
     }
 
 
     @media only screen and (max-width: 1031px) {
             .ul_menu{
-                background-color: blue;
+                /*background-color: blue;*/
             }
         li.theme {
             text-align: center;
@@ -120,7 +120,7 @@
                 min-width: 100%;*/
                 width: 100%;
                 min-width: 100%;
-                background-color: blue;
+                /*background-color: blue;*/
                 text-align: center;
             }
 
@@ -129,7 +129,7 @@
         .articles {
             max-width: 20%;
             width: 20%;
-            background-color: hotpink;
+            /*background-color: hotpink;*/
             text-align: left;
         }
     }

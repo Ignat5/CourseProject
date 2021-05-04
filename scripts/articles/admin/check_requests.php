@@ -27,6 +27,12 @@
     b.notAccepted {
         color: red;
     }
+    pre.message {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        font-size: 20px;
+    }
     @media only screen and (max-width: 1031px) {
        .div_menu {
            width: 100%;
@@ -45,16 +51,29 @@ session_start();
 //$allArticles = Article::getArticles();
 //$allArticles = Article::getArticlesOfUser($_SESSION['user_id']);
 $allArticles = Article::getRequestedArticles();
-echo '<div class="div_menu">';
+echo '<div class="div_menu" id="div1">';
 echo '<ul style="list-style-type: none">';
 foreach ($allArticles as $article) {
     echo '<li>'.'<a href = '.$_SERVER['PHP_SELF'].'?art_id='.$article['art_id'].'>'."{$article['art_name']}".'</a>'.'</li>';
 }
-if(!$allArticles->num_rows) {
+/*if(!$allArticles->num_rows) {
     echo 'Нет предложенных статей';
-}
+}*/
 echo '</ul>';
 echo '</div>';
+if (!$allArticles->num_rows) {?>
+    <script>
+        var div = document.getElementById("div1");
+        div.style.display="none";
+    </script>
+    <pre class="message">
+        Запросы пользователей отсутствуют.
+        Если кто-то из пользователей предложит вам свою статью к публикации,
+        она отобразится на данной странице.
+    </pre>
+<?php
+}
+
 ?>
 <!--read_article.php-->
 <?php
