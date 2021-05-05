@@ -1,6 +1,11 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/scripts/fragments/appbars/appbar_admin.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
+
+if(isset($_REQUEST['add'])||isset($_REQUEST['change'])||isset($_REQUEST['delete'])) {
+    $main_url = 'http://'.$_SERVER['HTTP_HOST'].'/CourseProject/scripts'.'/main.php';
+    header('Refresh:1.5; '.$main_url,true,303);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,8 +63,9 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
             background-color: lightskyblue;
             margin-right: 45px;
         }
-        div.add_inner {
-
+        div.option {
+            text-align: center;
+            display: none;
         }
 
     </style>
@@ -67,18 +73,19 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
 
 <body>
 <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" class="form">
+    <div id="optionID" class="option">
     <p class="choose">Выберите раздел для редактирования</p>
-    <div class="article_name">
-        <!--<p id="p" class="switch" onclick="onClickSwitch()">Новая тема</p> -->
-        <select id="selectID" onclick="onClick()">
+        <div class="article_name">
+            <select id="selectID" onclick="onClick()">
             <option style="display: none"></option>
             <?php $allThemes = Article::getThemes();
             foreach ($allThemes as $theme) {
                 echo '<option>'.$theme[0].'</option>';
             }
             ?>
-        </select>
-        <input class="cl1" id="inputID" type="text" name="article_theme_name" placeholder="Тема">
+            </select>
+            <input class="cl1" id="inputID" type="text" name="article_theme_name" placeholder="Тема">
+        </div>
     </div>
 
    <!-- <div class="addNewTheme">
@@ -120,26 +127,46 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
     }
     function show_add() {
         var input = document.getElementById("add_inner");
+        var input_update = document.getElementById("change_inner");
+        var option = document.getElementById("optionID");
+        var btn_delete = document.getElementById("btn1");
         if(input.style.display == "inline-block") {
             input.style.display="none";
         } else {
             input.style.display = "inline-block";
+            input_update.style.display="none";
+            option.style.display = "none";
+            btn_delete.style.display="none";
         }
     }
     function show_input() {
         var input = document.getElementById("change_inner");
+        var option = document.getElementById("optionID");
+        var input_add = document.getElementById("add_inner");
+        var btn_delete = document.getElementById("btn1");
         if(input.style.display == "inline-block") {
             input.style.display="none";
+            option.style.display = "none";
         } else {
             input.style.display = "inline-block";
+            option.style.display = "inline-block";
+            input_add.style.display="none";
+            btn_delete.style.display="none";
         }
     }
     function show_delete() {
         var btn_delete = document.getElementById("btn1");
+        var option = document.getElementById("optionID");
+        var input_add = document.getElementById("add_inner");
+        var input_update = document.getElementById("change_inner");
         if(btn_delete.style.display == "inline-block") {
             btn_delete.style.display="none";
+            option.style.display = "none";
         }else {
             btn_delete.style.display = "inline-block";
+            option.style.display = "inline-block";
+            input_add.style.display="none";
+            input_update.style.display="none";
         }
     }
 </script>
@@ -147,29 +174,42 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
 <?php
 if(isset($_REQUEST['add'])) {
     $blank_theme_name = $_REQUEST['theme_name_add'];
-    echo $blank_theme_name.'<hr>';
-    echo $_COOKIE['user_id'];
-    if(Article::addBlankTheme($blank_theme_name,$_COOKIE['user_id'])) {
-        echo 'ok';
+    if(Article::isThemeUnique($blank_theme_name)) {
+        Article::addBlankTheme($blank_theme_name,$_COOKIE['user_id']);
+        echo '<p style="color: green">Пустой раздел'.'<b style="font-size: 20px">'." $blank_theme_name ".'</b>'.'создан.</p>';
+    }else {
+        echo '<p style="color: red">Раздел с таким именем уже существует. Добавление отклонено.</p>';
+        //return;
     }
+
 }
 if(isset($_REQUEST['change'])) {
     $old_theme_name = $_REQUEST['article_theme_name'];
     $new_theme_name = $_REQUEST['theme_name'];
-    if(Article::changeNameOfTheme($old_theme_name,$new_theme_name)) {
-        echo 'ok';
-        //header('main')
+    if(trim($old_theme_name)=='') {
+        echo '<p style="color: red">Выберите раздел,который хотите изменить</p>';
+        //return;
+    }
+    if(Article::isThemeUnique($new_theme_name)) {
+        Article::changeNameOfTheme($old_theme_name,$new_theme_name);
+        echo '<p style="color: green">Изменение произведено: '."$old_theme_name ".'>>'.'<b style="font-size: 20px">'." $new_theme_name ".'</b></p>';
+
+    }else {
+        echo '<p style="color: red">Раздел с таким именем уже существует. Изменение отклонено.</p>';
+        //return;
     }
 }
 if(isset($_REQUEST['delete'])) {
     $theme_name = $_REQUEST['article_theme_name'];
+    if(trim($theme_name)=='') {
+        echo '<p style="color: red">Выберите раздел,который хотите удалить.</p>';
+        //return;
+    }
     if(Article::deleteTheme($theme_name)) {
-        echo 'ok';
-        //header('main')
+        echo '<p style="color: green">Раздел'.'<b style="font-size: 20px">'." $theme_name ".'</b>'.'удален.</p>';
+        //return;
     }
 }
-
 ?>
-
 </body>
 </html>

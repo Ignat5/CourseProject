@@ -193,6 +193,17 @@ class Article {
             die('cant add blank theme');
         }
     }
+    public static function isThemeUnique($article_theme) {
+        $connection = Connection::getConnection();
+        $query = "SELECT art_theme FROM articles WHERE art_theme='$article_theme'";
+        $result = $connection->query($query);
+        if($result->num_rows==0) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
     public static function changeNameOfTheme($old_theme_name,$new_theme_name) {
         $connection = Connection::getConnection();
         $query = "UPDATE articles SET art_theme='$new_theme_name' WHERE art_theme='$old_theme_name'";
