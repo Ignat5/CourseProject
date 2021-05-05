@@ -182,6 +182,17 @@ class Article {
         return $row;
     }
     //themes/topics
+    public static function addBlankTheme($theme_name,$admin_id) {
+        $connection = Connection::getConnection();
+        $query = "INSERT INTO articles (art_name,art_theme,art_context,art_isApproved,art_authorID,art_date)"
+        ."VALUES('','$theme_name','',1,$admin_id,CURRENT_DATE())";
+        $result = $connection->query($query);
+        if($result){
+            return true;
+        }else {
+            die('cant add blank theme');
+        }
+    }
     public static function changeNameOfTheme($old_theme_name,$new_theme_name) {
         $connection = Connection::getConnection();
         $query = "UPDATE articles SET art_theme='$new_theme_name' WHERE art_theme='$old_theme_name'";

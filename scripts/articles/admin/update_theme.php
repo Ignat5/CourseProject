@@ -48,6 +48,20 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
         input.cl1 {
             display: none;
         }
+
+        div.addNewTheme{
+            background-color: hotpink;
+            text-align: left;
+        }
+        div.addNewTheme p{
+            display: inline-block;
+            background-color: lightskyblue;
+            margin-right: 45px;
+        }
+        div.add_inner {
+
+        }
+
     </style>
 </head>
 
@@ -66,10 +80,26 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
         </select>
         <input class="cl1" id="inputID" type="text" name="article_theme_name" placeholder="Тема">
     </div>
+
+   <!-- <div class="addNewTheme">
+            <p onclick="">Добавить пустой раздел</p>
+            <div class="add_inner" id="div2">
+                <input type="text" placeholder="Название пустого раздела">
+                <button type="submit" name="add">Добавить</button>
+            </div>
+        </div> -->
+    <div class="change">
+        <p id="add" class="change" onclick="show_add()">Добавить пустой раздел</p>
+        <div id="add_inner" class="change_inner">
+            <input id="input_add" type="text" name="theme_name_add" placeholder="Название пустого раздела">
+            <button type="submit" name="add">Добавить</button>
+        </div>
+    </div>
+
 <div class="change">
 <p id="change" class="change" onclick="show_input()">Изменить название раздела</p>
     <div id="change_inner" class="change_inner">
-        <input id="input1" type="text" name="theme_name" placeholder="Новое название раздела">
+        <input id="input1" type="text" name="theme_name" placeholder="Название нового раздела">
         <button type="submit" name="change">Изменить</button>
     </div>
 </div>
@@ -88,17 +118,41 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
         var inputView = document.getElementById("inputID");
         inputView.value = option;
     }
+    function show_add() {
+        var input = document.getElementById("add_inner");
+        if(input.style.display == "inline-block") {
+            input.style.display="none";
+        } else {
+            input.style.display = "inline-block";
+        }
+    }
     function show_input() {
         var input = document.getElementById("change_inner");
-        input.style.display="inline-block";
+        if(input.style.display == "inline-block") {
+            input.style.display="none";
+        } else {
+            input.style.display = "inline-block";
+        }
     }
     function show_delete() {
         var btn_delete = document.getElementById("btn1");
-        btn_delete.style.display="inline-block";
+        if(btn_delete.style.display == "inline-block") {
+            btn_delete.style.display="none";
+        }else {
+            btn_delete.style.display = "inline-block";
+        }
     }
 </script>
 
 <?php
+if(isset($_REQUEST['add'])) {
+    $blank_theme_name = $_REQUEST['theme_name_add'];
+    echo $blank_theme_name.'<hr>';
+    echo $_COOKIE['user_id'];
+    if(Article::addBlankTheme($blank_theme_name,$_COOKIE['user_id'])) {
+        echo 'ok';
+    }
+}
 if(isset($_REQUEST['change'])) {
     $old_theme_name = $_REQUEST['article_theme_name'];
     $new_theme_name = $_REQUEST['theme_name'];
