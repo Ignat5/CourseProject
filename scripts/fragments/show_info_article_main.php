@@ -38,6 +38,8 @@ if(!isset($_SESSION['user_name'])) {
     <style>
 
         .center {
+            border-left: 2px solid white;
+            border-bottom: 2px solid white;
             text-align: center;
             margin: 0px;
             background-color: darkgray;
@@ -46,6 +48,9 @@ if(!isset($_SESSION['user_name'])) {
             position: relative;
             overflow: hidden;
             <?php if($_SESSION['isAdmin']==0){ echo 'width:85%';} ?>
+
+            background-color: #333;
+            color: ghostwhite;
 
         }
         .change {
@@ -62,13 +67,37 @@ if(!isset($_SESSION['user_name'])) {
         a.last {
             position: absolute;
             right: 0;
-            color: #111111;
+            opacity: 0.5;
+            color: white;
         }
         a.first {
             position: absolute;
             left: 0;
-            color: #111111;
+            opacity: 0.5;
+            color: white;
         }
+        a.last:hover {
+            opacity: 0.8;
+        }
+        a.first:hover {
+            opacity: 0.8;
+        }
+        h2 {
+            opacity: 0.9;
+        }
+        h3 {
+            opacity: 0.9;
+        }
+        h4 {
+            opacity: 0.9;
+        }
+        h5 {
+            opacity: 0.9;
+        }
+
+        p.context1 {
+        }
+
 
 
 
@@ -99,7 +128,7 @@ if(!isset($_SESSION['user_name'])) {
 
     <!-- <textarea id="textarea1" name="article_context" disabled="disabled" cols="100" rows="20"></textarea> -->
     <hr>
-    <p><?php echo $article_context?></p>
+    <p class="context1"><?php echo $article_context?></p>
     <hr>
     <h4><?php echo 'Автор статьи: '.$article_author?></h4>
 

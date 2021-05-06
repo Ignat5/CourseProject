@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,6 +9,9 @@
 </head>
 
 <style>
+    body {
+        background-color: #333;
+    }
     * {
         box-sizing: border-box;
     }
@@ -26,12 +33,16 @@
         float: left;
         /*width: 150px;*/
         width: 15%;
-        background-color: lightpink;
+        /*background-color: lightpink;*/
+        background-color: #333;
+        color: white;
         text-align: left;
         /*max-width: 150px;*/
         display: inline-block;
         margin-top: 0px;
         padding: 0px;
+        border-right: 2px solid white;
+        border-bottom: 2px solid white;
 
         <!-- -->
     }
@@ -54,11 +65,16 @@
         overflow-wrap: break-word;
         white-space: pre-line;
         /*padding-right: 15px;*/
+        background-color: white;
+        color: black;
     }
     li.collapse {
         cursor: pointer;
-        /*background-color: aqua;*/
+        opacity: 0.5;
         text-align: center;
+    }
+    li.collapse:hover {
+        opacity: 0.8;
     }
     div.articles ul {
         /*background-color: #dddddd;*/
@@ -72,6 +88,7 @@
         margin-top: 20px;
         overflow: hidden;
         text-overflow: ellipsis;
+        color: white;
     }
     ul.ul_article li:hover {
         /*background-color: red;*/
@@ -87,11 +104,15 @@
     .articles {
         visibility: hidden;
         /*background-color: teal;*/
+        background-color: #333;
+        color: white;
         float: left;
         width: 0%;
         margin: 0px;
         font-size: 20px;
         left: 0;
+        /*border-right: 2px solid white;*/
+        border-bottom: 2px solid white;
 
     }
     .ul_menu {
@@ -103,6 +124,8 @@
 
     p.topic {
         text-align: center;
+        font-size: 25px;
+        font-family: "Times New Roman";
     }
     a.edit:hover {
         opacity: 0.8;
@@ -111,7 +134,41 @@
         display: block;
         text-align: center;
         opacity: 0.5;
+        color: white;
     }
+    .li_article {
+        padding: 0;
+        margin: 0;
+    }
+
+
+    li.li_article:hover {
+        background-color: white;
+        color: #111111;
+    }
+    li.li_article:hover a {
+        background-color: white;
+        color: #111111;
+    }
+    a:link {
+        color: white;
+    }
+    a:visited {
+        color: white;
+    }
+    li.theme a:hover {
+        color: black;
+    }
+    .li_article a:hover {
+        color: #111111;
+    }
+    a:active {
+        color: white;
+    }
+
+
+
+
 
     @media only screen and (max-width: 1031px) {
             .ul_menu{
@@ -153,7 +210,7 @@ if(isset($_COOKIE['user_id'])) {
     try {
         $user_row = User::getUserById(intval($_COOKIE['user_id'])); //ассоц массив с данными пользователя
         //save user's data in session
-        session_start();
+        //session_start();
         $_SESSION['user_id'] = $user_row['user_id'];
         $_SESSION['user_name'] = $user_row['user_name'];
         $_SESSION['isAdmin'] = $user_row['isAdmin'];
@@ -181,7 +238,7 @@ if(isset($_SESSION['isAdmin'])) {
 //require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/scripts/fragments/appbars/appbar_not_auth_user.php');
 
 $allThemes = Article::getThemes();
-echo '<div class="div_menu">';
+echo '<div id="div_menu" class="div_menu">';
 echo '<p class="topic">Разделы</p>';
 echo '<hr>';
 echo '<ul class = ul_menu>';
@@ -200,11 +257,14 @@ echo '</div>';
 <?php if(isset($_GET['theme'])) {
     $articles_row = Article::getArticlesOfTheme($_GET['theme']);
     echo '<div id="art" class="articles">';
+    echo '<p class="topic">Статьи</p>';
+    echo '<hr>';
     echo '<ul class="ul_article">';
     $allArticles = Article::getArticlesOfTheme($_GET['theme']);
     foreach ($allArticles as $article) {
-        echo '<li>'.'<a href = '.$_SERVER['PHP_SELF'].'?art_id='.intval($article[1]).'>'."{$article[0]}".'</a>'.'</li>';
+        echo '<li class="li_article">'.'<a href = '.$_SERVER['PHP_SELF'].'?art_id='.intval($article[1]).'>'."{$article[0]}".'</a>'.'</li>';
     }
+    echo '<br>';
     echo '<li class="collapse" onclick="collapseArticles()">свернуть</li>';
     echo '</ul>';
     echo '</div>';
@@ -243,14 +303,25 @@ if(isset($_GET['theme'])) {
 ?>
 
 <script>
+    var articles = document.getElementById("art");
+    var themes = document.getElementById("div_menu");
+    if(articles==null) {
+        //alert("123");
+        themes.style.borderRight = "1px solid white";
+    }
+
     function showArticles(elementID) {
-            var articles = document.getElementById("art");
+        var articles = document.getElementById("art");
+        //var themes = document.getElementById("div_menu");
+        //themes.style.borderRight = "1px";
             var theme_name = elementID.innerHTML;
             window.location.href = "main.php?art_id="+"<?php global $art_id; echo $art_id;?>" +"&theme=" + theme_name;
 
     }
     function collapseArticles() {
         var articles = document.getElementById("art");
+        //var themes = document.getElementById("div_menu");
+        //themes.style.borderRight = "1px solid white";
         articles.style.display = "none";
         <?php if($_SESSION['isAdmin'] == 1) { ?>
         var context = document.getElementById("context");
@@ -260,6 +331,7 @@ if(isset($_GET['theme'])) {
         context.style.width = "85%";
         <?php }?>
     }
+
 </script>
 
 </body>

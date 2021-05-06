@@ -13,6 +13,7 @@
             top: 0;
             width: 100%;
             z-index: 1;
+            border-bottom: 2px solid white;
 
             /*width: 100px;*/
             /*overflow: hidden;*/
@@ -22,6 +23,7 @@
 
         div.appbar ul {
             list-style-type: none;
+            border-bottom: 2px solid white;
             margin: 0px;
             padding: 0px;
             overflow: hidden;
