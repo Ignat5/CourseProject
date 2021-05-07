@@ -5,18 +5,21 @@
         body {
             font-size: 18px;
             padding-top: 40px;
-            background-color: lightblue;
+            margin-bottom: 0px;
+            /*background-color: lightblue;*/
         }
 
         div.appbar ul {
             list-style-type: none;
-            margin: 0;
-            padding: 0;
+            border-bottom: 2px solid white;
+            margin: 0px;
+            padding: 0px;
             overflow: hidden;
             background-color: #333;
             position: fixed;
             top: 0;
             width: 100%;
+            min-width: 900px;
         }
 
         div.appbar li {
@@ -36,7 +39,11 @@
             background-color: #111;
         }
         div.appbar{
-            margin-left: -10px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1;
+            border-bottom: 2px solid white;
         }
 
 

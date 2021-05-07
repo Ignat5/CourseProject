@@ -8,6 +8,9 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
     <meta charset="UTF-8">
     <title>Работа над статьей</title>
     <style>
+        ::-webkit-input-placeholder {
+            text-align: center;
+        }
         .article_name{
             margin: 20px auto 10px auto;
             width: 50%;
@@ -21,32 +24,67 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
 
         }
         input.cl1{
-            border-radius: 5px;
-            visibility: visible;
+            border-radius: 8px;
+            /*visibility: visible;*/
             text-align: left;
-
+            background-color: #E5E5E5;
+            font-size: 20px;
+            padding: 5px;
         }
         input.cl2{
-            border-radius: 5px;
-        }
-        p.switch {
-            font-size: 15px;
-            margin-bottom: 5px;
-            opacity: 0.5;
-            cursor: pointer;
+            padding: 5px;
+            border-radius: 8px;
+            font-size: 20px;
+            background-color: #E5E5E5;
         }
         select {
             text-align: center;
             margin: auto;
             visibility: visible;
-
+            font-size: 20px;
+            border-radius: 8px;
+            background-color: #E5E5E5;
+            width: 50%;
+            text-align-last:center;
+        }
+        p.choose {
+            margin: 0;
+            padding: 0;
+            opacity: 0.7;
+        }
+        .button{
+            margin: 10px auto 15px auto;
+            width: auto;
+            text-align: center;
+            font-size: 20px;
+            border-radius: 8px;
+        }
+        button:hover {
+            background-color: #333;
+            color: white;
+        }
+        input.cl1:hover {
+            /*font-size: 31px;*/
+            width: 100%;
+            background-color: #333;
+            color: white;
+        }
+        input.cl2:hover {
+            /*font-size: 31px;*/
+            width: 100%;
+            background-color: #333;
+            color: white;
+        }
+        select:hover {
+            background-color: #333;
+            color: white;
         }
     </style>
 </head>
 <body>
 <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" class="form">
     <div class="article_name">
-        <!--<p id="p" class="switch" onclick="onClickSwitch()">Новая тема</p> -->
+        <p class = "choose">выберите раздел</p>
         <select id="selectID" onclick="onClick()">
             <?php $allThemes = Article::getThemes();
             foreach ($allThemes as $theme) {
@@ -56,16 +94,16 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
         </select>
         <br>
         <br>
-        <input  class="cl1" id="inputID" type="text" name="article_theme" placeholder="Тема">
+        <input  class="cl1" id="inputID" type="text" name="article_theme" placeholder="Раздел">
         <!-- <input  class="cl1" type="text" name="article_theme" placeholder="Тема"> -->
         <br><br>
         <input  class="cl2" type="text" name="article_name" placeholder="Название статьи">
     </div>
 
-    <textarea id="textarea1" name="article_context" cols="100" rows="20">Some text here</textarea>
+    <textarea id="textarea1" name="article_context" cols="100" rows="20"></textarea>
 
     <div class="button">
-        <button id="createID" class="button" type="submit" name="create" >Создать статью</button>
+        <button id="createID" class="button" type="submit" name="create" >Предложить статью</button>
     </div>
 
 </form>
@@ -96,7 +134,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
 
 <script src="https://cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
 <script type="text/javascript">
-    var ckeditor = CKEDITOR.replace('article_context');
+    var ckeditor = CKEDITOR.replace('article_context',{
+        width:1500,height:300});
 </script>
 </body>
 </html>

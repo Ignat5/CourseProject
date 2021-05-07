@@ -5,6 +5,9 @@
 </head>
 
 <style>
+    * {
+        box-sizing: border-box;
+    }
     a{
         text-decoration: none;
     }
@@ -14,8 +17,10 @@
     .div_menu {
         float: left;
         width: 20%;
-
-        background-color: antiquewhite;
+        border-right: 2px solid white;
+        border-bottom: 2px solid white;
+        padding: 0;
+        display: inline-block;
     }
     b {
         font-size: 15px;
@@ -39,11 +44,26 @@
     pre.message {
         text-align: center;
     }
+    a:link {
+        color: white;
+    }
+    a:visited {
+        color: white;
+    }
+    a:active {
+        color: white;
+    }
+    p.topic {
+        text-align: center;
+        font-size: 20px;
+        font-family: "Times New Roman";
+    }
 
     @media only screen and (max-width: 1031px) {
         .div_menu{
             width: 100%;
             text-align: center;
+            border-left: 2px solid white;
         }
 
     }
@@ -62,6 +82,8 @@ $allArticles = Article::getArticlesOfUser($_SESSION['user_id']);
 $number_rows =  $allArticles->num_rows;
 if($number_rows!=0) {
 echo '<div class="div_menu">';
+    echo '<p class="topic">Предложенные Статьи</p>';
+    echo '<hr>';
 echo '<ul style="list-style-type: none" class="ul_articles">';
 $status = '';
 $class = '';

@@ -48,13 +48,22 @@ if(!isset($_SESSION['user_name'])) {
     <meta charset="UTF-8">
     <title>Read</title>
     <style>
+        body {
+            background-color: #333;
+            color: white;
+        }
         .center {
             text-align: center;
-            margin: auto;
-            background-color: darkgray;
+            margin: 0px;
+            /*background-color: darkgray;*/
             float: left;
             width: 80%;
             position: relative;
+            border-left: 2px solid white;
+            border-bottom: 2px solid white;
+            color: ghostwhite;
+            opacity: 0.9;
+            /*border-right: 2px solid white;*/
         <?php if($role!=2) {echo 'width: 80%';} ?>
         }
         div.inner {
@@ -66,22 +75,32 @@ if(!isset($_SESSION['user_name'])) {
             top: 0;
             float: left;
             width: 100%;
-            background-color: darkcyan;
+            /*background-color: darkcyan;*/
+            padding: 5px;
         }
         a.last {
             position: absolute;
             right: 0;
-            color: #111111;
+            color: white;
+            opacity: 0.7;
         }
         a.first {
             position: absolute;
             left: 0;
-            color: #111111;
+            color: white;
+            opacity: 0.7;
+        }
+        a.first:hover {
+            opacity: 0.9;
+        }
+        a.last:hover {
+            opacity: 0.9;
         }
 
         @media only screen and (max-width: 1031px) {
             .center {
                 width: 100%;
+                border-right: 2px solid white;
             }
 
         }
@@ -93,7 +112,7 @@ if(!isset($_SESSION['user_name'])) {
 
 
 <div class="center">
-    <h2><?php echo 'Тема статьи: '.$article_theme?></h2>
+    <h2><?php echo 'Раздел статьи: '.$article_theme?></h2>
     <h3><?php echo 'Название статьи: '.$article_name?></h3>
     <h5><?php echo 'Дата публикации: '.$article_date?></h5>
 

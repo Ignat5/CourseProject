@@ -1,5 +1,6 @@
 <?php
 //Удаляем любую информацию, сохраненную о пользователе
+session_start();
 $_SESSION = array();
 session_destroy();
 setcookie("user_id","1",time()-3600);

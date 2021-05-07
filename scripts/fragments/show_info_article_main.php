@@ -42,7 +42,7 @@ if(!isset($_SESSION['user_name'])) {
             border-bottom: 2px solid white;
             text-align: center;
             margin: 0px;
-            background-color: darkgray;
+            /*background-color: darkgray;*/
             float: left;
             width: 85%;
             position: relative;
@@ -51,6 +51,10 @@ if(!isset($_SESSION['user_name'])) {
 
             background-color: #333;
             color: ghostwhite;
+
+            /*overflow-wrap: break-word;
+            text-overflow: unset;
+            white-space: pre-line;*/
 
         }
         .change {
@@ -96,6 +100,13 @@ if(!isset($_SESSION['user_name'])) {
         }
 
         p.context1 {
+            overflow-wrap: break-word;
+            text-overflow: unset;
+            white-space: pre-line;
+        }
+        div.content {
+            overflow-wrap: break-word;
+            white-space: pre-line;
         }
 
 
@@ -105,6 +116,7 @@ if(!isset($_SESSION['user_name'])) {
             .center{
                 width: 100%;
                 min-width: 100%;
+                border-right: 2px solid white;
             }
             .change{width: 100%;}
         }
@@ -122,13 +134,15 @@ if(!isset($_SESSION['user_name'])) {
 
 <div id="context" class="center">
     <br>
-    <h2><?php echo 'Тема статьи: '.$article_theme?></h2>
+    <h2><?php echo 'Раздел статьи: '.$article_theme?></h2>
     <h3><?php echo 'Название статьи: '.$article_name?></h3>
     <h5><?php echo 'Дата публикации: '.$article_date?></h5>
 
     <!-- <textarea id="textarea1" name="article_context" disabled="disabled" cols="100" rows="20"></textarea> -->
     <hr>
+    <div class="content">
     <p class="context1"><?php echo $article_context?></p>
+    </div>
     <hr>
     <h4><?php echo 'Автор статьи: '.$article_author?></h4>
 

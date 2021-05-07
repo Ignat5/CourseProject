@@ -5,17 +5,34 @@
 </head>
 
 <style>
+    * {
+        box-sizing: border-box;
+    }
     a{
         text-decoration: none;
     }
     li{
         margin-top: 10px;
+        text-align: center;
+    }
+    li.articles {
+        padding: 0;
+        margin: 0;
+    }
+    ul {
+        padding: 0;
     }
     .div_menu {
         float: left;
         width: 20%;
+        border-right: 2px solid white;
+        border-bottom: 2px solid white;
+        text-align: left;
+        display: inline-block;
+        margin-top: 0px;
+        padding: 0px;
 
-        background-color: antiquewhite;
+        /*background-color: antiquewhite;*/
     }
     b {
         font-size: 15px;
@@ -32,6 +49,16 @@
         padding: 0;
         text-align: center;
         font-size: 20px;
+    }
+    a:link {
+        color: white;
+    }
+    a:visited {
+        color: white;
+    }
+
+    a:active {
+        color: white;
     }
     @media only screen and (max-width: 1031px) {
        .div_menu {
@@ -54,7 +81,7 @@ $allArticles = Article::getRequestedArticles();
 echo '<div class="div_menu" id="div1">';
 echo '<ul style="list-style-type: none">';
 foreach ($allArticles as $article) {
-    echo '<li>'.'<a href = '.$_SERVER['PHP_SELF'].'?art_id='.$article['art_id'].'>'."{$article['art_name']}".'</a>'.'</li>';
+    echo '<li class="articles">'.'<a href = '.$_SERVER['PHP_SELF'].'?art_id='.$article['art_id'].'>'."{$article['art_name']}".'</a>'.'</li>';
 }
 /*if(!$allArticles->num_rows) {
     echo 'Нет предложенных статей';

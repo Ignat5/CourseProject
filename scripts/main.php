@@ -113,6 +113,7 @@ session_start();
         left: 0;
         /*border-right: 2px solid white;*/
         border-bottom: 2px solid white;
+        border-left: 2px solid white;
 
     }
     .ul_menu {
@@ -177,7 +178,10 @@ session_start();
         li.theme {
             text-align: center;
         }
-            .div_menu{width: 100%;}
+            .div_menu{
+                width: 100%;
+                border-left: 2px solid white;
+            }
             .articles{
                 /*width: 100%;
                 max-width: 100%;
@@ -186,6 +190,7 @@ session_start();
                 min-width: 100%;
                 /*background-color: blue;*/
                 text-align: center;
+                border-right: 2px solid white;
             }
 
     }
@@ -221,6 +226,8 @@ if(isset($_COOKIE['user_id'])) {
 }else {
 //user in not authorised
     //echo 'You are not authorized!';
+    $_SESSION = array();
+    session_destroy();
 }
 
 if(isset($_SESSION['isAdmin'])) {

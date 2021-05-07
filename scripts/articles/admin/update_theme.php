@@ -4,7 +4,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
 
 if(isset($_REQUEST['add'])||isset($_REQUEST['change'])||isset($_REQUEST['delete'])) {
     $main_url = 'http://'.$_SERVER['HTTP_HOST'].'/CourseProject/scripts'.'/main.php';
-    header('Refresh:1.5; '.$main_url,true,303);
+    header('Refresh:2; '.$main_url,true,303);
 }
 ?>
 <!DOCTYPE html>
@@ -17,35 +17,43 @@ if(isset($_REQUEST['add'])||isset($_REQUEST['change'])||isset($_REQUEST['delete'
             text-align: center;
             margin: auto;
             visibility: visible;
+            font-size: 30px;
+            width: 100%;
         }
         div.article_name {
             text-align: center;
+            font-size: 30px;
         }
         p.change {
-            background-color: lightskyblue;
+            /*background-color: lightskyblue;*/
             display: inline-block;
             margin-right: 20px;
             cursor: pointer;
         }
         div.change{
-            background-color: lightpink;
+            /*background-color: lightpink;*/
         }
         div.change_inner {
             display: none;
+            /*background-color: lightblue;*/
+            width: 100%;
+            margin-bottom: 50px;
         }
         p.choose {
             text-align: center;
             margin: 0;
-            margin-bottom: 15px;
+            font-size: 20px;
+            margin-bottom: 3px;
+            opacity: 0.7;
         }
         p.delete {
-            background-color: lightskyblue;
+            /*background-color: lightskyblue;*/
             display: inline-block;
             cursor: pointer;
             margin-right: 20px;
         }
         div.delete {
-            background-color: lightpink;
+            /*background-color: lightpink;*/
         }
         button.delete {
             display: none;
@@ -60,12 +68,41 @@ if(isset($_REQUEST['add'])||isset($_REQUEST['change'])||isset($_REQUEST['delete'
         }
         div.addNewTheme p{
             display: inline-block;
-            background-color: lightskyblue;
+            /*background-color: lightskyblue;*/
             margin-right: 45px;
         }
         div.option {
             text-align: center;
             display: none;
+        }
+        div.all {
+            text-align: center;
+            font-size: 30px;
+        }
+        input {
+            font-size: 30px;
+            padding: 5px;
+            width: 90%;
+            border-radius: 8px;
+        }
+        button {
+            font-size: 19px;
+            border-radius: 5px;
+        }
+        select:hover {
+            font-size: 31px;
+        }
+        button:hover {
+            font-size: 20px;
+        }
+        /*p:hover {
+            font-size: 31px;
+        }*/
+        p.change:hover {
+            font-size: 31px;
+        }
+        p.delete:hover {
+            font-size: 31px;
         }
 
     </style>
@@ -73,6 +110,7 @@ if(isset($_REQUEST['add'])||isset($_REQUEST['change'])||isset($_REQUEST['delete'
 
 <body>
 <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" class="form">
+    <div class="all">
     <div id="optionID" class="option">
     <p class="choose">Выберите раздел для редактирования</p>
         <div class="article_name">
@@ -88,13 +126,6 @@ if(isset($_REQUEST['add'])||isset($_REQUEST['change'])||isset($_REQUEST['delete'
         </div>
     </div>
 
-   <!-- <div class="addNewTheme">
-            <p onclick="">Добавить пустой раздел</p>
-            <div class="add_inner" id="div2">
-                <input type="text" placeholder="Название пустого раздела">
-                <button type="submit" name="add">Добавить</button>
-            </div>
-        </div> -->
     <div class="change">
         <p id="add" class="change" onclick="show_add()">Добавить пустой раздел</p>
         <div id="add_inner" class="change_inner">
@@ -102,7 +133,7 @@ if(isset($_REQUEST['add'])||isset($_REQUEST['change'])||isset($_REQUEST['delete'
             <button type="submit" name="add">Добавить</button>
         </div>
     </div>
-
+<hr>
 <div class="change">
 <p id="change" class="change" onclick="show_input()">Изменить название раздела</p>
     <div id="change_inner" class="change_inner">
@@ -110,11 +141,13 @@ if(isset($_REQUEST['add'])||isset($_REQUEST['change'])||isset($_REQUEST['delete'
         <button type="submit" name="change">Изменить</button>
     </div>
 </div>
+        <hr>
     <div class="delete">
         <p class="delete" onclick="show_delete()">Удалить раздел</p>
         <button id="btn1" class="delete" type="submit" name="delete">Удалить</button>
     </div>
 
+    </div>
 
 </form>
 <script>
@@ -174,12 +207,16 @@ if(isset($_REQUEST['add'])||isset($_REQUEST['change'])||isset($_REQUEST['delete'
 <?php
 if(isset($_REQUEST['add'])) {
     $blank_theme_name = $_REQUEST['theme_name_add'];
+    if(trim($blank_theme_name)=='') {
+        echo '<p style="color: red">Название раздела не может быть пустым. Добавление отклонено.</p>';
+        return;
+    }
     if(Article::isThemeUnique($blank_theme_name)) {
         Article::addBlankTheme($blank_theme_name,$_COOKIE['user_id']);
         echo '<p style="color: green">Пустой раздел'.'<b style="font-size: 20px">'." $blank_theme_name ".'</b>'.'создан.</p>';
     }else {
         echo '<p style="color: red">Раздел с таким именем уже существует. Добавление отклонено.</p>';
-        //return;
+        return;
     }
 
 }
@@ -187,8 +224,12 @@ if(isset($_REQUEST['change'])) {
     $old_theme_name = $_REQUEST['article_theme_name'];
     $new_theme_name = $_REQUEST['theme_name'];
     if(trim($old_theme_name)=='') {
-        echo '<p style="color: red">Выберите раздел,который хотите изменить</p>';
-        //return;
+        echo '<p style="color: red">Не был выбран раздел. Изменение отклонено.</p>';
+        return;
+    }
+    if(trim($new_theme_name)=='') {
+        echo '<p style="color: red">Название раздела не может быть пустым. Изменение отклонено.</p>';
+        return;
     }
     if(Article::isThemeUnique($new_theme_name)) {
         Article::changeNameOfTheme($old_theme_name,$new_theme_name);
@@ -196,18 +237,18 @@ if(isset($_REQUEST['change'])) {
 
     }else {
         echo '<p style="color: red">Раздел с таким именем уже существует. Изменение отклонено.</p>';
-        //return;
+        return;
     }
 }
 if(isset($_REQUEST['delete'])) {
     $theme_name = $_REQUEST['article_theme_name'];
     if(trim($theme_name)=='') {
-        echo '<p style="color: red">Выберите раздел,который хотите удалить.</p>';
-        //return;
+        echo '<p style="color: red">Не был выбран раздел. Удаление отклонено.</p>';
+        return;
     }
     if(Article::deleteTheme($theme_name)) {
         echo '<p style="color: green">Раздел'.'<b style="font-size: 20px">'." $theme_name ".'</b>'.'удален.</p>';
-        //return;
+        return;
     }
 }
 ?>
