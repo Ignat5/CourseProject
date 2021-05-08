@@ -134,8 +134,10 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
 
 <script src="https://cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
 <script type="text/javascript">
-    var ckeditor = CKEDITOR.replace('article_context',{
-        width:1500,height:300});
+    var ckeditor = CKEDITOR.replace('article_context');
+    CKEDITOR.on('instanceReady',function () {
+        ckeditor.resize('100%',450);
+    })
 </script>
 </body>
 </html>

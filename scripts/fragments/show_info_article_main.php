@@ -10,7 +10,7 @@ if(isset($_GET['art_id'])) {
 }else {
     //$chosenArticle = Article::getArticleById(2);
     if($chosenArticle = Article::getDefaultArticle()) {
-    }else {die('Не удалось получить дефолтную статью');}
+    }else {die('На данный момент не было опубликовано ни одной статьи');}
 }
 $article_name = $chosenArticle['art_name'];
 $article_theme = $chosenArticle['art_theme'];
@@ -40,9 +40,9 @@ if(!isset($_SESSION['user_name'])) {
         .center {
             border-left: 2px solid white;
             border-bottom: 2px solid white;
-            text-align: center;
+            /*text-align: center;*/
             margin: 0px;
-            /*background-color: darkgray;*/
+            /*background-color: white;*/
             float: left;
             width: 85%;
             position: relative;
@@ -51,6 +51,8 @@ if(!isset($_SESSION['user_name'])) {
 
             background-color: #333;
             color: ghostwhite;
+            /*background-color: white;
+            color: black;*/
 
             /*overflow-wrap: break-word;
             text-overflow: unset;
@@ -105,12 +107,17 @@ if(!isset($_SESSION['user_name'])) {
             white-space: pre-line;
         }
         div.content {
-            overflow-wrap: break-word;
-            white-space: pre-line;
+            opacity: 0.9;
+            padding-left: 8px;
+            /*overflow-wrap: break-word;
+            white-space: pre-line;*/
         }
-
-
-
+        div.header {
+            text-align: center;
+        }
+        div.author {
+            text-align: center;
+        }
 
         @media only screen and (max-width: 1031px) {
             .center{
@@ -134,17 +141,22 @@ if(!isset($_SESSION['user_name'])) {
 
 <div id="context" class="center">
     <br>
+    <div class="header">
     <h2><?php echo 'Раздел статьи: '.$article_theme?></h2>
     <h3><?php echo 'Название статьи: '.$article_name?></h3>
     <h5><?php echo 'Дата публикации: '.$article_date?></h5>
+    </div>
 
     <!-- <textarea id="textarea1" name="article_context" disabled="disabled" cols="100" rows="20"></textarea> -->
     <hr>
     <div class="content">
-    <p class="context1"><?php echo $article_context?></p>
+    <!--<p class="context1"><?php //echo $article_context?></p>-->
+       <?php echo $article_context?>
     </div>
     <hr>
+    <div class="author">
     <h4><?php echo 'Автор статьи: '.$article_author?></h4>
+    </div>
 
     <?php
     if($role == 2) {

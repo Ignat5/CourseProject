@@ -47,7 +47,7 @@ session_start();
         <!-- -->
     }
     ul {
-        list-style-type: none;
+        /*list-style-type: none;*/
     }
     li.theme {
         cursor: pointer;

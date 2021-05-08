@@ -53,7 +53,7 @@ if(!isset($_SESSION['user_name'])) {
             color: white;
         }
         .center {
-            text-align: center;
+            /*text-align: center;*/
             margin: 0px;
             /*background-color: darkgray;*/
             float: left;
@@ -97,6 +97,19 @@ if(!isset($_SESSION['user_name'])) {
             opacity: 0.9;
         }
 
+        div.content {
+            opacity: 0.9;
+            padding-left: 8px;
+            /*overflow-wrap: break-word;
+            white-space: pre-line;*/
+        }
+        div.header {
+            text-align: center;
+        }
+        div.author {
+            text-align: center;
+        }
+
         @media only screen and (max-width: 1031px) {
             .center {
                 width: 100%;
@@ -112,15 +125,22 @@ if(!isset($_SESSION['user_name'])) {
 
 
 <div class="center">
+    <div class="header">
     <h2><?php echo 'Раздел статьи: '.$article_theme?></h2>
     <h3><?php echo 'Название статьи: '.$article_name?></h3>
     <h5><?php echo 'Дата публикации: '.$article_date?></h5>
+    </div>
+    <hr>
 
-    <!-- <textarea id="textarea1" name="article_context" disabled="disabled" cols="100" rows="20"></textarea> -->
+    <!-- <p><?php //echo $article_context?></p> -->
+    <div class="content">
+        <?php echo $article_context?>
+    </div>
+
     <hr>
-    <p><?php echo $article_context?></p>
-    <hr>
+    <div class="author">
     <h4><?php echo 'Автор статьи: '.$article_author?></h4>
+    </div>
 <?php
 if($_SESSION['isAdmin']) {
     $path_publish = '/CourseProject/scripts/articles/admin/publish_requested_article.php'

@@ -13,15 +13,15 @@
     }
     li{
         margin-top: 10px;
-        text-align: center;
+        /*text-align: center;*/
     }
     li.articles {
         padding: 0;
         margin: 0;
     }
-    ul {
+    /*ul {
         padding: 0;
-    }
+    }*/
     .div_menu {
         float: left;
         width: 20%;
@@ -60,9 +60,15 @@
     a:active {
         color: white;
     }
+    p.topic {
+        text-align: center;
+        font-size: 20px;
+        font-family: "Times New Roman";
+    }
     @media only screen and (max-width: 1031px) {
        .div_menu {
            width: 100%;
+           border-left: 2px solid white;
        }
     }
 
@@ -79,6 +85,8 @@ session_start();
 //$allArticles = Article::getArticlesOfUser($_SESSION['user_id']);
 $allArticles = Article::getRequestedArticles();
 echo '<div class="div_menu" id="div1">';
+echo '<p class="topic">Предложенные Статьи</p>';
+echo '<hr>';
 echo '<ul style="list-style-type: none">';
 foreach ($allArticles as $article) {
     echo '<li class="articles">'.'<a href = '.$_SERVER['PHP_SELF'].'?art_id='.$article['art_id'].'>'."{$article['art_name']}".'</a>'.'</li>';
