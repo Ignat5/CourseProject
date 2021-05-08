@@ -3,15 +3,65 @@
 <head>
     <title>Авторизация</title>
     <style>
+        body {
+            background-color: #333;
+        }
+        div.register a {
+            text-decoration: none;
+            opacity: 0.7;
+        }
         .error {
             color: red;
-            font-size: small;
-            font-family: "Baskerville Old Face";
+            font-size: 15px;
         }
         .ok {
             color: green;
-            font-size: small;
-            font-family: "Baskerville Old Face";
+            font-size: 15px;
+        }
+        div.all {
+            text-align: center;
+            /*background-color: lightpink;*/
+            position: relative;
+            margin-top: 30px;
+            border: 2px solid white;
+            padding: 20px;
+        }
+        input{
+            border-radius: 8px;
+            /*visibility: visible;*/
+            text-align: left;
+            background-color: white;
+            font-size: 15px;
+            padding: 5px;
+        }
+        input:hover {
+            /*font-size: 31px;*/
+            font-size: 16px;
+        }
+        button {
+            font-size: 15px;
+            border-radius: 5px;
+        }
+        button:hover {
+            font-size: 16px;
+        }
+        div.register {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 5px;
+        }
+        a:link {
+            color: white;
+        }
+        a:visited {
+            color: white;
+        }
+        a:active {
+            color: white;
+        }
+        div.register a:hover {
+            opacity: 0.9;
         }
     </style>
 </head>
@@ -22,7 +72,6 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/User.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/scripts/fragments/appbars/appbar_not_auth_user.php');
 $errors = [];
 if (isset($_REQUEST['submit'])) {
-
     $user_name = $_REQUEST['name'];
     $user_password = $_REQUEST['password'];
     $authUser = new User($user_name,$user_password);
@@ -49,40 +98,40 @@ if (isset($_REQUEST['submit'])) {
     <p <?php if(count($errors)>0) {echo 'class="error"';}else{echo 'class="ok"';} ?> ><?php if(count($errors)>0){echo $errors[0];} else {echo "Ok";} ?></p>
     <hr>
     <form method="post" action=<?=$_SERVER['PHP_SELF']?> >
-
-        <label for="name">Ваше имя</label>
-        <br>
-        <input id="name" type="text" name="name" <?="value='$user_name'"?>>
+    <div class="all">
+        <input id="name" type="text" name="name" <?="value='$user_name'"?> placeholder="Имя">
         <br>
         <br>
-        <label for="password">Ваш пароль</label>
-        <br>
-        <input id="password" type="password" name="password" <?="value='$user_password'"?> autocomplete="off">
+        <input id="password" type="password" name="password" <?="value='$user_password'"?> autocomplete="off" placeholder="Пароль">
         <br>
         <br>
         <button type="submit" name="submit">Авторизироваться</button>
+
+        <div class="register">
+            <a href= <?php echo 'registration.php';?>>Зарегистрироваться</a>
+        </div>
+    </div>
     </form>
-    <a href= <?php echo '/CourseProject/scripts/registration.php';?>>Зарегистрироваться</a>
+
     <?php
 }else {
 ?>
-<p <?php if(count($errors)>0) {echo 'class="error"';}else{echo 'class="ok"';} ?> ><?php if(count($errors)>0){echo $errors[0];} else {echo "Ok";} ?></p>
-<hr>
 <form method="post" action=<?=$_SERVER['PHP_SELF']?> >
-
-    <label for="name">Ваше имя</label>
-    <br>
-    <input id="name" type="text" name="name">
+<div class="all">
+    <input id="name" type="text" name="name" maxlength="20" placeholder="Имя">
     <br>
     <br>
-    <label for="password">Ваш пароль</label>
-    <br>
-    <input id="password" type="password" name="password" autocomplete="off">
+    <input id="password" type="password" name="password" autocomplete="off" maxlength="20" placeholder="Пароль">
     <br>
     <br>
     <button type="submit" name="submit">Авторизироваться</button>
+
+    <div class="register">
+        <a href= <?php echo 'registration.php';?>>Зарегистрироваться</a>
+    </div>
+
+</div>
 </form>
-<a href= <?php echo 'registration.php';?>>Зарегистрироваться</a>
 </body>
 <?php
 }

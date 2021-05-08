@@ -9,17 +9,30 @@
 
         div.appbar ul {
             list-style-type: none;
-            margin: 0;
-            padding: 0;
+            border-bottom: 2px solid white;
+            margin: 0px;
+            padding: 0px;
             overflow: hidden;
             background-color: #333;
             position: fixed;
             top: 0;
             width: 100%;
+            min-width: 900px;
         }
 
         div.appbar li {
             float: left;
+        }
+        div.appbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1;
+            border-bottom: 2px solid white;
+
+            /*width: 100px;*/
+            /*overflow: hidden;*/
+            /*min-width: 900px;*/
         }
 
         div.appbar li a {

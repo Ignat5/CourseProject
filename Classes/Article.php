@@ -172,7 +172,7 @@ class Article {
     }
     public static function getArticlesOfTheme($theme) {
         $connection = Connection::getConnection();
-        $query = "SELECT art_name,art_id FROM articles WHERE art_theme = '$theme'";
+        $query = "SELECT art_name,art_id FROM articles WHERE art_theme = '$theme' AND art_isApproved = 1 ORDER BY art_name ASC";
         $result = $connection->query($query);
         $connection->close();
         if(!$result) {
@@ -180,6 +180,49 @@ class Article {
         }
         $row = $result->fetch_all();
         return $row;
+    }
+    //themes/topics
+    public static function addBlankTheme($theme_name,$admin_id) {
+        $connection = Connection::getConnection();
+        $query = "INSERT INTO articles (art_name,art_theme,art_context,art_isApproved,art_authorID,art_date)"
+        ."VALUES('','$theme_name','',1,$admin_id,CURRENT_DATE())";
+        $result = $connection->query($query);
+        if($result){
+            return true;
+        }else {
+            die('cant add blank theme');
+        }
+    }
+    public static function isThemeUnique($article_theme) {
+        $connection = Connection::getConnection();
+        $query = "SELECT art_theme FROM articles WHERE art_theme='$article_theme'";
+        $result = $connection->query($query);
+        if($result->num_rows==0) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public static function changeNameOfTheme($old_theme_name,$new_theme_name) {
+        $connection = Connection::getConnection();
+        $query = "UPDATE articles SET art_theme='$new_theme_name' WHERE art_theme='$old_theme_name'";
+        $result = $connection->query($query);
+        if($result) {
+            return true;
+        }else {
+            die('cant update name of theme');
+        }
+    }
+    public static function deleteTheme($theme_name) {
+        $connection = Connection::getConnection();
+        $query = "DELETE FROM articles WHERE art_theme='$theme_name'";
+        $result = $connection->query($query);
+        if($result) {
+            return true;
+        }else {
+            die('cant delete this topic');
+        }
     }
 
 

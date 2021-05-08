@@ -4,15 +4,65 @@
 <head>
     <title>Регистрация</title>
     <style>
+        body {
+            background-color: #333;
+        }
+        div.register a {
+            text-decoration: none;
+            opacity: 0.7;
+        }
         .error {
             color: red;
-            font-size: small;
-            font-family: "Baskerville Old Face";
+            font-size: 15px;
         }
         .ok {
             color: green;
-            font-size: small;
-            font-family: "Baskerville Old Face";
+            font-size: 15px;
+        }
+        div.all {
+            text-align: center;
+            /*background-color: lightpink;*/
+            position: relative;
+            margin-top: 30px;
+            border: 2px solid white;
+            padding: 20px;
+        }
+        input{
+            border-radius: 8px;
+            /*visibility: visible;*/
+            text-align: left;
+            background-color: white;
+            font-size: 15px;
+            padding: 5px;
+        }
+        input:hover {
+            /*font-size: 31px;*/
+            font-size: 16px;
+        }
+        button {
+            font-size: 15px;
+            border-radius: 5px;
+        }
+        button:hover {
+            font-size: 16px;
+        }
+        div.register {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 5px;
+        }
+        a:link {
+            color: white;
+        }
+        a:visited {
+            color: white;
+        }
+        a:active {
+            color: white;
+        }
+        div.register a:hover {
+            opacity: 0.9;
         }
     </style>
 </head>
@@ -37,46 +87,34 @@ if(isset($_REQUEST['submit'])) {
     }catch (UserException $exception) {
         $errors[] = $exception->getMessage();
     }
-
-
     ?>
     <p <?php if(count($errors)>0) {echo 'class="error"';}else{echo 'class="ok"';} ?> ><?php if(count($errors)>0){echo $errors[0];} else {echo "Ok";} ?></p>
     <hr>
-    <form method="post" action=<?=$_SERVER['PHP_SELF']?> >
-
-        <label for="name">Ваше имя</label>
-        <br>
-        <input id="name" type="text" name="name" maxlength="15" <?="value='$user_name'"?>>
-        <br>
-        <br>
-        <label for="password">Ваш пароль</label>
-        <br>
-        <input id="password" type="password" name="password" maxlength="15" <?="value='$user_password'"?> autocomplete="off">
-        <br>
-        <br>
-        <button type="submit" name="submit">Зарегистрироваться</button>
-
+    <form method="post" action=<?=$_SERVER['PHP_SELF']?>>
+        <div class="all">
+            <input id="name" type="text" name="name" maxlength="15" <?="value='$user_name'"?> placeholder="Введите имя">
+            <br>
+            <br>
+            <input id="password" type="password" name="password" maxlength="15" <?="value='$user_password'"?> autocomplete="off"  placeholder="Введите пароль">
+            <br>
+            <br>
+            <button type="submit" name="submit">Зарегистрироваться</button>
+        </div>
     </form>
 
 <?php
     } else {
 ?>
-<p <?php if(count($errors)>0) {echo 'class="error"';}else{echo 'class="ok"';} ?> ><?php if(count($errors)>0){echo $errors[0];} else {echo "Ok";} ?></p>
-<hr>
 <form method="post" action=<?=$_SERVER['PHP_SELF']?> >
-
-    <label for="name">Ваше имя</label>
-    <br>
-    <input id="name" type="text" maxlength="15" name="name">
+<div class="all">
+    <input id="name" type="text" maxlength="15" name="name" placeholder="Введите имя">
     <br>
     <br>
-    <label for="password">Ваш пароль</label>
-    <br>
-    <input id="password" type="password" name="password" maxlength="15" autocomplete="off">
+    <input id="password" type="password" name="password" maxlength="15" autocomplete="off" placeholder="Введите пароль">
 <br>
     <br>
     <button type="submit" name="submit">Зарегистрироваться</button>
-
+</div>
 </form>
 
 </body>

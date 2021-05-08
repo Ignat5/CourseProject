@@ -43,6 +43,7 @@ if(isset($_GET['art_id'])) {
             float: left;
             width: 70%;
             <?php if($role!=2) {echo 'width: 80%';} ?>
+
         }
         .change {
             float: left;

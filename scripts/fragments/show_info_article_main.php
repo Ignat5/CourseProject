@@ -10,7 +10,7 @@ if(isset($_GET['art_id'])) {
 }else {
     //$chosenArticle = Article::getArticleById(2);
     if($chosenArticle = Article::getDefaultArticle()) {
-    }else {die('Не удалось получить дефолтную статью');}
+    }else {die('На данный момент не было опубликовано ни одной статьи');}
 }
 $article_name = $chosenArticle['art_name'];
 $article_theme = $chosenArticle['art_theme'];
@@ -36,21 +36,103 @@ if(!isset($_SESSION['user_name'])) {
     <meta charset="UTF-8">
     <title>Read</title>
     <style>
+
         .center {
-            text-align: center;
-            margin: auto;
-            background-color: darkgray;
+            border-left: 2px solid white;
+            border-bottom: 2px solid white;
+            /*text-align: center;*/
+            margin: 0px;
+            /*background-color: white;*/
             float: left;
-            width: 90%;
-            <?php //if($isOpen) {echo 'width: 70%';}else {echo 'width: 90%';} ?>
-        <?php //if($role!=2) {echo 'width: 80%';} ?>
+            width: 85%;
+            position: relative;
+            overflow: hidden;
+            <?php if($_SESSION['isAdmin']==0){ echo 'width:85%';} ?>
+
+            background-color: #333;
+            color: ghostwhite;
+            /*background-color: white;
+            color: black;*/
+
+            /*overflow-wrap: break-word;
+            text-overflow: unset;
+            white-space: pre-line;*/
 
         }
         .change {
-            float: left;
-            width: 10%;
-            background-color: darkcyan;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            padding: 5px;
         }
+
+        div.inner {
+            position: relative;
+        }
+
+        a.last {
+            position: absolute;
+            right: 0;
+            opacity: 0.5;
+            color: white;
+        }
+        a.first {
+            position: absolute;
+            left: 0;
+            opacity: 0.5;
+            color: white;
+        }
+        a.last:hover {
+            opacity: 0.8;
+        }
+        a.first:hover {
+            opacity: 0.8;
+        }
+        h2 {
+            opacity: 0.9;
+        }
+        h3 {
+            opacity: 0.9;
+        }
+        h4 {
+            opacity: 0.9;
+        }
+        h5 {
+            opacity: 0.9;
+        }
+
+        p.context1 {
+            overflow-wrap: break-word;
+            text-overflow: unset;
+            white-space: pre-line;
+        }
+        div.content {
+            opacity: 0.9;
+            padding-left: 8px;
+            /*overflow-wrap: break-word;
+            white-space: pre-line;*/
+        }
+        div.header {
+            text-align: center;
+        }
+        div.author {
+            text-align: center;
+        }
+
+        @media only screen and (max-width: 1031px) {
+            .center{
+                width: 100%;
+                min-width: 100%;
+                border-right: 2px solid white;
+            }
+            .change{width: 100%;}
+        }
+        /*@media only screen and (min-width: 1031px) {
+            .center{
+                width: 65%;
+                min-width: 65%;
+            }
+        }*/
     </style>
 </head>
 <body>
@@ -58,37 +140,44 @@ if(!isset($_SESSION['user_name'])) {
 
 
 <div id="context" class="center">
-    <h2><?php echo 'Тема статьи: '.$article_theme?></h2>
+    <br>
+    <div class="header">
+    <h2><?php echo 'Раздел статьи: '.$article_theme?></h2>
     <h3><?php echo 'Название статьи: '.$article_name?></h3>
     <h5><?php echo 'Дата публикации: '.$article_date?></h5>
+    </div>
 
     <!-- <textarea id="textarea1" name="article_context" disabled="disabled" cols="100" rows="20"></textarea> -->
     <hr>
-    <p><?php echo $article_context?></p>
+    <div class="content">
+    <!--<p class="context1"><?php //echo $article_context?></p>-->
+       <?php echo $article_context?>
+    </div>
     <hr>
+    <div class="author">
     <h4><?php echo 'Автор статьи: '.$article_author?></h4>
-</div>
-<?php
-//require_once();
-/*if($role == 1) {
-    //auth_user
-    echo '<div class = "change">';
-        echo '<a href="#modif">Предложить модификацию статьи</a>'.'<hr>';
-    echo '</div>';
-}*/
-if($role == 2) {
-    //admin
-    $path_update = '/CourseProject/scripts/articles/admin/update_article.php'.
-        '?art_id='.$art_id;
-    $path_delete = '/CourseProject/scripts/articles/admin/delete_article.php'.
-        '?art_id='.$art_id;
+    </div>
 
-    echo '<div class = "change">';
-    echo '<a href='.$path_update.'>Редактировать статью</a>'.'<hr>';
-    echo '<a href='.$path_delete.'>Удалить статью</a>'.'<hr>';
-    echo '</div>';
-}
-?>
+    <?php
+    if($role == 2) {
+        //admin
+        $path_update = '/CourseProject/scripts/articles/admin/update_article.php'.
+            '?art_id='.$art_id;
+        $path_delete = '/CourseProject/scripts/articles/admin/delete_article.php'.
+            '?art_id='.$art_id;
+
+        echo '<div class = "change">';
+        echo '<div class="inner">';
+        echo '<a href='.$path_update.' class="first">Редактировать статью</a>';
+        echo '<a href='.$path_delete.' class="last">Удалить статью</a>';
+        echo '</div>';
+        echo '</div>';
+    }
+    ?>
+
+
+</div>
+
 
 </body>
 
