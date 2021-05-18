@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Главная страница</title>
+    <title>Мои запросы</title>
 </head>
 
 <style>
@@ -73,9 +73,9 @@
 <body>
 
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/User.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/scripts/fragments/appbars/appbar_auth_user.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Classes/User.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/scripts/fragments/appbars/appbar_auth_user.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Classes/Article.php');
 session_start();
 //$allArticles = Article::getArticles();
 $allArticles = Article::getArticlesOfUser($_SESSION['user_id']);
@@ -110,7 +110,7 @@ echo '</div>';
 ?>
 <!--read_article.php-->
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/scripts/fragments/show_info_article_offers.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/scripts/fragments/show_info_article_offers.php');
 ?>
 
 </body>

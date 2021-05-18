@@ -1,5 +1,6 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
+//require_once('/var/www/vitas/data/www/ignat.pr-host.ru/Classes/Article.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Classes/Article.php');
 $chosenArticle = array();
 //$art_id = 2;
 if(isset($_GET['art_id'])) {
@@ -51,12 +52,6 @@ if(!isset($_SESSION['user_name'])) {
 
             background-color: #333;
             color: ghostwhite;
-            /*background-color: white;
-            color: black;*/
-
-            /*overflow-wrap: break-word;
-            text-overflow: unset;
-            white-space: pre-line;*/
 
         }
         .change {
@@ -161,9 +156,9 @@ if(!isset($_SESSION['user_name'])) {
     <?php
     if($role == 2) {
         //admin
-        $path_update = '/CourseProject/scripts/articles/admin/update_article.php'.
+        $path_update = '/scripts/articles/admin/update_article.php'.
             '?art_id='.$art_id;
-        $path_delete = '/CourseProject/scripts/articles/admin/delete_article.php'.
+        $path_delete = '/scripts/articles/admin/delete_article.php'.
             '?art_id='.$art_id;
 
         echo '<div class = "change">';

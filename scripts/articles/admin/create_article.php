@@ -1,13 +1,8 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Classes/Article.php');
 
 session_start();
-//
-/*if(isset($_REQUEST['create'])) {
-    $main_url = 'http://'.$_SERVER['HTTP_HOST'].'/CourseProject/scripts'.'/main.php';
-    header('Refresh:1.5; '.$main_url,true,303);
-}*/
-//
+
 if(isset($_SESSION['user_id'])) {
     $authorID = $_SESSION['user_id'];
     $isAdmin = $_SESSION['isAdmin'];
@@ -27,7 +22,7 @@ if(isset($_REQUEST['create'])) {
         $article->post_article();
         echo '<p style="color: green">'.'Статья успешно создана'.'</p>'.'<hr>';
         if(isset($_REQUEST['create'])) {
-            $main_url = 'http://'.$_SERVER['HTTP_HOST'].'/CourseProject/scripts'.'/main.php';
+            $main_url = '/index.php';
             header('Refresh:1.5; '.$main_url,true,303);
         }
     }catch (Exception $exception){
@@ -36,8 +31,8 @@ if(isset($_REQUEST['create'])) {
 }
 if(isset($_REQUEST['create'])) {
         //require_once($_SERVER['DOCUMENT_ROOT'] . '/CourseProject/html/admin/create_article_html_saveInfo.php');
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/CourseProject/tests/create_article_html_new_saveInfo.php');
+    require_once($_SERVER['DOCUMENT_ROOT'].'/tests/create_article_html_new_saveInfo.php');
 }else {
         //require_once($_SERVER['DOCUMENT_ROOT'] . '/CourseProject/html/admin/create_article_html.php');
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/CourseProject/tests/create_article_html_new.php');
+    require_once($_SERVER['DOCUMENT_ROOT'].'/tests/create_article_html_new.php');
 }

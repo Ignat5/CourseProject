@@ -1,4 +1,4 @@
-<?php require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/scripts/fragments/appbars/appbar_auth_user.php');?>
+<?php require_once('/var/www/vitas/data/www/ignat.pr-host.ru/scripts/fragments/appbars/appbar_auth_user.php');?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

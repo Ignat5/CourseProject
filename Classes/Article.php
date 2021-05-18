@@ -1,11 +1,13 @@
 <?php
-require_once ($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Connection.php');
+//require_once ($_SERVER['DOCUMENT_ROOT'].'/CourseProject_v2/Classes/Connection.php');
+//require_once ('/Classes/Connection.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Classes/Connection.php');
 class Article {
-    private string $name;
-    private string $theme;
-    private string $context;
-    private int $isApproved;
-    private int $authorID;
+    private  $name;
+    private  $theme;
+    private  $context;
+    private  $isApproved;
+    private  $authorID;
 
     function __construct($name,$theme,$context,$isApproved,$authorID) {
         $this->name = $name;
@@ -15,22 +17,22 @@ class Article {
         $this->authorID = $authorID;
     }
 
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
-    public function getTheme(): string
+    public function getTheme()
     {
         return $this->theme;
     }
-    public function getContext(): string
+    public function getContext()
     {
         return $this->context;
     }
-    public function getIsApproved():bool {
+    public function getIsApproved() {
         return $this->isApproved;
     }
-    public function getAuthorID(): int
+    public function getAuthorID()
     {
         return $this->authorID;
     }
@@ -161,7 +163,7 @@ class Article {
     //menu
     public static function getThemes() {
         $connection = Connection::getConnection();
-        $query = "SELECT DISTINCT art_theme FROM articles";
+        $query = "SELECT DISTINCT art_theme FROM articles WHERE art_isApproved = 1";
         $result = $connection->query($query);
         $connection->close();
         if(!$result) {

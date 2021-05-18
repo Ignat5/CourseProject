@@ -1,12 +1,12 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/scripts/fragments/appbars/appbar_auth_user.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/scripts/fragments/appbars/appbar_auth_user.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Classes/Article.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Работа над статьей</title>
+    <title>Предложение статьи</title>
     <style>
         ::-webkit-input-placeholder {
             text-align: center;

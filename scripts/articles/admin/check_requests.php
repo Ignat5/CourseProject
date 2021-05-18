@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Главная страница</title>
+    <title>Запросы</title>
 </head>
 
 <style>
@@ -18,6 +18,7 @@
     li.articles {
         padding: 0;
         margin: 0;
+        margin-top: 10px;
     }
     /*ul {
         padding: 0;
@@ -77,12 +78,10 @@
 <body>
 
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/User.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/scripts/fragments/appbars/appbar_admin.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Classes/User.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/scripts/fragments/appbars/appbar_admin.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Classes/Article.php');
 session_start();
-//$allArticles = Article::getArticles();
-//$allArticles = Article::getArticlesOfUser($_SESSION['user_id']);
 $allArticles = Article::getRequestedArticles();
 echo '<div class="div_menu" id="div1">';
 echo '<p class="topic">Предложенные Статьи</p>';
@@ -112,7 +111,7 @@ if (!$allArticles->num_rows) {?>
 ?>
 <!--read_article.php-->
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/scripts/fragments/show_info_article_offers.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/scripts/fragments/show_info_article_offers.php');
 ?>
 
 </body>

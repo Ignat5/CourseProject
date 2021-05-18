@@ -1,9 +1,9 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/scripts/fragments/appbars/appbar_admin.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/scripts/fragments/appbars/appbar_admin.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Classes/Article.php');
 
 if(isset($_REQUEST['add'])||isset($_REQUEST['change'])||isset($_REQUEST['delete'])) {
-    $main_url = 'http://'.$_SERVER['HTTP_HOST'].'/CourseProject/scripts'.'/main.php';
+    $main_url = '/index.php';
     header('Refresh:2; '.$main_url,true,303);
 }
 ?>
@@ -11,7 +11,7 @@ if(isset($_REQUEST['add'])||isset($_REQUEST['change'])||isset($_REQUEST['delete'
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Работа над статьей</title>
+    <title>Разделы</title>
     <style>
         select {
             text-align: center;
@@ -137,7 +137,7 @@ if(isset($_REQUEST['add'])||isset($_REQUEST['change'])||isset($_REQUEST['delete'
 <div class="change">
 <p id="change" class="change" onclick="show_input()">Изменить название раздела</p>
     <div id="change_inner" class="change_inner">
-        <input id="input1" type="text" name="theme_name" placeholder="Название нового раздела">
+        <input id="input1" type="text" name="theme_name" placeholder="Новое название раздела">
         <button type="submit" name="change">Изменить</button>
     </div>
 </div>

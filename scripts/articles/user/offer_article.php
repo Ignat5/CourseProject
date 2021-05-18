@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/CourseProject/Classes/Article.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Classes/Article.php');
 
 session_start();
 
@@ -16,16 +16,11 @@ if (isset($_REQUEST['create'])) {
     $form_context = $_REQUEST['article_context'];
     //validation
     try {
-       /* echo 'isAdmin: '.$isAdmin.'<hr>';
-        echo 'ID: '.$authorID.'<hr>';
-        echo 'name: '.$form_name.'<hr>';
-        echo 'theme: '.$form_theme.'<hr>';
-        echo 'context: '.$form_context.'<hr>';*/
         Article::isArticleValid($form_theme, $form_name, $form_context);
         $article = new Article($form_name, $form_theme, $form_context, $isAdmin, $authorID);
         $article->post_article();
         if(isset($_REQUEST['create'])) {
-            $main_url = 'http://'.$_SERVER['HTTP_HOST'].'/CourseProject/scripts'.'/main.php';
+            $main_url = '/index.php';
             header('Refresh:2; '.$main_url,true,303);
         }
         echo '<p style="color: green">' . 'Статья успешно создана' . '</p>' . '<hr>';
@@ -34,10 +29,9 @@ if (isset($_REQUEST['create'])) {
     }
 }
 if (isset($_REQUEST['create'])) {
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/CourseProject/tests/offer_article_html_new_saveInfo.php');
+    require_once($_SERVER['DOCUMENT_ROOT'].'/tests/offer_article_html_new_saveInfo.php');
 } else {
-    //require_once($_SERVER['DOCUMENT_ROOT'] . '/CourseProject/html/user/offer_article_html.php');
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/CourseProject/tests/offer_article_html_new.php');
+    require_once($_SERVER['DOCUMENT_ROOT'].'/tests/offer_article_html_new.php');
     ?>
 <?php
 }

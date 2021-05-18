@@ -68,10 +68,10 @@
 
 <div class="appbar">
 <ul>
-    <li><a class="active" href="/CourseProject/scripts/main.php">Главная</a></li>
-    <li><a href="/CourseProject/scripts/articles/admin/create_article.php">Создать статью</a></li>
-    <li><a href="/CourseProject/scripts/articles/admin/check_requests.php">Посмотреть запросы пользователей</a></li>
-    <li style="float: right"><a href="/CourseProject/scripts/logout.php">Выйти из аккаунта</a></li>
+    <li><a class="active" href="/index.php">Главная</a></li>
+    <li><a href="/scripts/articles/admin/create_article.php">Создать статью</a></li>
+    <li><a href="/scripts/articles/admin/check_requests.php">Посмотреть запросы пользователей</a></li>
+    <li style="float: right"><a href="/scripts/logout.php">Выйти из аккаунта</a></li>
 </ul>
 </div>
 

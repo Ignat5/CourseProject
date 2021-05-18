@@ -53,7 +53,7 @@
 
 <div class="appbar">
     <ul>
-        <li><a class="home" href="/CourseProject/scripts/main.php">Главная</a></li>
-        <li style="float: right"><a href="/CourseProject/scripts/authorization.php">Авторизироваться</a></li>
+        <li><a class="home" href="/index.php">Главная</a></li>
+        <li style="float: right"><a href="/scripts/authorization.php">Авторизироваться</a></li>
     </ul>
 </div>

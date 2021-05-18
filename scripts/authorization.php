@@ -68,8 +68,9 @@
 
 <body>
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/User.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/scripts/fragments/appbars/appbar_not_auth_user.php');
+@ini_set('display_errors', true);
+require_once($_SERVER['DOCUMENT_ROOT'].'/Classes/User.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/scripts/fragments/appbars/appbar_not_auth_user.php');
 $errors = [];
 if (isset($_REQUEST['submit'])) {
     $user_name = $_REQUEST['name'];
@@ -83,12 +84,13 @@ if (isset($_REQUEST['submit'])) {
                 $user_row = $user_result->fetch_assoc();
                 $user_id = $user_row['user_id'];
                 $time_to_expiring = 0; //сразу по закрытии страницы
-                setcookie("user_id","$user_id",$time_to_expiring);
+                setcookie("user_id","$user_id",$time_to_expiring,"/","ignat.pr-host.ru");
+                //var_dump($_COOKIE);
             }catch (UserException $exception) {
                 $errors[] = $exception->getMessage();
                 die();
             }
-            $main_url = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/main.php';
+            $main_url = '/index.php';
             header('Location:'.$main_url);
         }
     }catch (UserException$exception) {

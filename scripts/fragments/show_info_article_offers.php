@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Article.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Classes/Article.php');
 $chosenArticle = array();
 //$art_id = 2;
 if($_SESSION['isAdmin'] == 0) {
@@ -143,9 +143,9 @@ if(!isset($_SESSION['user_name'])) {
     </div>
 <?php
 if($_SESSION['isAdmin']) {
-    $path_publish = '/CourseProject/scripts/articles/admin/publish_requested_article.php'
+    $path_publish = '/scripts/articles/admin/publish_requested_article.php'
     .'?art_id='.$art_id;
-    $path_delete = '/CourseProject/scripts/articles/admin/delete_requested_article.php'
+    $path_delete = '/scripts/articles/admin/delete_requested_article.php'
         .'?art_id='.$art_id;
     echo '<div class = "change">';
     echo '<div class="inner">';

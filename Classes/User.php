@@ -1,14 +1,15 @@
 <?php
-require_once ($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/exceptions/UserException.php');
-require_once ($_SERVER['DOCUMENT_ROOT'].'/CourseProject/Classes/Connection.php');
+require_once ($_SERVER['DOCUMENT_ROOT'].'/Classes/exceptions/UserException.php');
+//require_once ($_SERVER['DOCUMENT_ROOT'].'/CourseProject_v2/Classes/Connection.php');
+require_once ($_SERVER['DOCUMENT_ROOT'].'/Classes/Connection.php');
 class User {
-    public static int $ROLE_ADMIN = 0;
-    public static int $ROLE_AUTH_USER = 1;
-    public static int $ROLE_NOT_AUTH_USER = 2;
+    public static  $ROLE_ADMIN = 0;
+    public static  $ROLE_AUTH_USER = 1;
+    public static  $ROLE_NOT_AUTH_USER = 2;
 
-    private string $username;
-    private string $password;
-    private int $role;
+    private $username;
+    private  $password;
+    private  $role;
 
     public function __construct($username,$password)
     {
@@ -103,17 +104,17 @@ class User {
     }
 
     //getters
-    public function getName(): string
+    public function getName()
     {
         return $this->username;
     }
 
-    public function getPassword(): string
+    public function getPassword()
     {
         return $this->password;
     }
 
-    public function getRole(): int
+    public function getRole()
     {
         return $this->role;
     }
